@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTO
+namespace DAL
 {
-    public class Class1
+    public class ConectionData
     {
+        public static DataKhachSanDataContext dt = new DataKhachSanDataContext();
     }
 }
