@@ -8,9 +8,10 @@ namespace DTO
 {
     public class DTO_KhachHang
     {
-        private string maKH, tenKH, cMND, gioiTinh, diaChi, email, sdt;
+        private string maKH, tenKH, cMND, diaChi, email, sdt;
+        private bool gioiTinh;
 
-        public DTO_KhachHang(string maKH, string tenKH, string cMND, string gioiTinh, string diaChi, string email, string sdt)
+        public DTO_KhachHang(string maKH, string tenKH, string cMND, bool gioiTinh, string diaChi, string email, string sdt)
         {
             this.MaKH = maKH;
             this.TenKH = tenKH;
@@ -24,9 +25,9 @@ namespace DTO
         public string MaKH { get => maKH; set => maKH = value; }
         public string TenKH { get => tenKH; set => tenKH = value; }
         public string CMND { get => cMND; set => cMND = value; }
-        public string GioiTinh { get => gioiTinh; set => gioiTinh = value; }
         public string DiaChi { get => diaChi; set => diaChi = value; }
         public string Email { get => email; set => email = value; }
         public string Sdt { get => sdt; set => sdt = value; }
+        public bool GioiTinh { get => gioiTinh; set => gioiTinh = value; }
     }
 }
