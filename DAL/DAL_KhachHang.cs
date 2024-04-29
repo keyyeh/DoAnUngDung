@@ -16,7 +16,7 @@ namespace DAL
                             select KH;
             return KhachHang;
         }
-        public void Them(DTO_KhachHang kh)
+        public int Them(DTO_KhachHang kh)
         {
             try
             {
@@ -36,6 +36,7 @@ namespace DAL
             {
                 ConectionData.dt.SubmitChanges();
             }
+            return 1;
         }
         public void Sua(DTO_KhachHang kh)
         {

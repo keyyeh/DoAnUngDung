@@ -9,22 +9,34 @@ namespace DAL
 {
     public class DAL_DatPhong
     {
-        public IQueryable Xem()
+        public IQueryable Xem(string maKS)
         {
-            var Xem = from DP in ConectionData.dt.PHONGs
-                      select DP;
-            return Xem;
+            var xem = from dp in ConectionData.dt.DATPHONGs  
+                      join kh in ConectionData.dt.KHACHHANGs on dp.MAKH equals kh.MAKH
+                      join p in ConectionData.dt.PHONGs on dp.MAPHONG equals p.MAPHONG
+                      where dp.MAKS == maKS
+                      select new
+                      {
+                          MAKH = kh.MAKH,
+                          TENKH = kh.TENKH,
+                          PHONG = p.TENPHONG,
+                          CCCD = kh.CMND,
+                          SDT = kh.SDT,
+                          EMAIL = kh.EMAIL,
+                          GIOITINH = kh.GIOITINH,
+                      };
+            return xem;
         }
-        public void Them(DTO_DatPhong dp)
+        public int Them(DTO_DatPhong dp)
         {
             try
             {
                 DATPHONG datPhong = new DATPHONG
                 {
-                    MAKS = dp.MaKS,
                     MAKH = dp.MaKH,
-                    NGAYDATPHONG = dp.NgayDatPhong,
-                    NGAYTRAPHONG = dp.NgayTraPhong,
+                    MAKS = dp.MaKS,
+                    MAPHONG = dp.MaPhong,
+                    NGAYDATPHONG = dp.NgayDatPhong
                 };
                 ConectionData.dt.DATPHONGs.InsertOnSubmit(datPhong);
             }
@@ -32,11 +44,11 @@ namespace DAL
             {
                 ConectionData.dt.SubmitChanges();
             }
+            return 1;
         }
         public void Sua(DTO_DatPhong dp)
         {
             var sua = ConectionData.dt.DATPHONGs.Single(datPhong => datPhong.MAKS == dp.MaKS);
-            sua.NGAYDATPHONG = dp.NgayDatPhong;
             sua.NGAYTRAPHONG = dp.NgayTraPhong;
 
             ConectionData.dt.DATPHONGs.InsertOnSubmit(sua);

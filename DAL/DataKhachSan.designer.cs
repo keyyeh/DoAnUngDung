@@ -45,9 +45,6 @@ namespace DAL
     partial void InsertCHUCVU(CHUCVU instance);
     partial void UpdateCHUCVU(CHUCVU instance);
     partial void DeleteCHUCVU(CHUCVU instance);
-    partial void InsertDATPHONG(DATPHONG instance);
-    partial void UpdateDATPHONG(DATPHONG instance);
-    partial void DeleteDATPHONG(DATPHONG instance);
     partial void InsertKHACHSAN(KHACHSAN instance);
     partial void UpdateKHACHSAN(KHACHSAN instance);
     partial void DeleteKHACHSAN(KHACHSAN instance);
@@ -63,6 +60,9 @@ namespace DAL
     partial void InsertKHACHHANG(KHACHHANG instance);
     partial void UpdateKHACHHANG(KHACHHANG instance);
     partial void DeleteKHACHHANG(KHACHHANG instance);
+    partial void InsertDATPHONG(DATPHONG instance);
+    partial void UpdateDATPHONG(DATPHONG instance);
+    partial void DeleteDATPHONG(DATPHONG instance);
     #endregion
 		
 		public DataKhachSanDataContext() : 
@@ -135,14 +135,6 @@ namespace DAL
 			}
 		}
 		
-		public System.Data.Linq.Table<DATPHONG> DATPHONGs
-		{
-			get
-			{
-				return this.GetTable<DATPHONG>();
-			}
-		}
-		
 		public System.Data.Linq.Table<KHACHSAN> KHACHSANs
 		{
 			get
@@ -180,6 +172,14 @@ namespace DAL
 			get
 			{
 				return this.GetTable<KHACHHANG>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DATPHONG> DATPHONGs
+		{
+			get
+			{
+				return this.GetTable<DATPHONG>();
 			}
 		}
 	}
@@ -1006,222 +1006,6 @@ namespace DAL
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DATPHONG")]
-	public partial class DATPHONG : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _MAKS;
-		
-		private string _MAKH;
-		
-		private System.Nullable<System.DateTime> _NGAYDATPHONG;
-		
-		private System.Nullable<System.DateTime> _NGAYTRAPHONG;
-		
-		private EntityRef<KHACHSAN> _KHACHSAN;
-		
-		private EntityRef<KHACHHANG> _KHACHHANG;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMAKSChanging(string value);
-    partial void OnMAKSChanged();
-    partial void OnMAKHChanging(string value);
-    partial void OnMAKHChanged();
-    partial void OnNGAYDATPHONGChanging(System.Nullable<System.DateTime> value);
-    partial void OnNGAYDATPHONGChanged();
-    partial void OnNGAYTRAPHONGChanging(System.Nullable<System.DateTime> value);
-    partial void OnNGAYTRAPHONGChanged();
-    #endregion
-		
-		public DATPHONG()
-		{
-			this._KHACHSAN = default(EntityRef<KHACHSAN>);
-			this._KHACHHANG = default(EntityRef<KHACHHANG>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAKS", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string MAKS
-		{
-			get
-			{
-				return this._MAKS;
-			}
-			set
-			{
-				if ((this._MAKS != value))
-				{
-					if (this._KHACHSAN.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMAKSChanging(value);
-					this.SendPropertyChanging();
-					this._MAKS = value;
-					this.SendPropertyChanged("MAKS");
-					this.OnMAKSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAKH", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string MAKH
-		{
-			get
-			{
-				return this._MAKH;
-			}
-			set
-			{
-				if ((this._MAKH != value))
-				{
-					if (this._KHACHHANG.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMAKHChanging(value);
-					this.SendPropertyChanging();
-					this._MAKH = value;
-					this.SendPropertyChanged("MAKH");
-					this.OnMAKHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NGAYDATPHONG", DbType="Date")]
-		public System.Nullable<System.DateTime> NGAYDATPHONG
-		{
-			get
-			{
-				return this._NGAYDATPHONG;
-			}
-			set
-			{
-				if ((this._NGAYDATPHONG != value))
-				{
-					this.OnNGAYDATPHONGChanging(value);
-					this.SendPropertyChanging();
-					this._NGAYDATPHONG = value;
-					this.SendPropertyChanged("NGAYDATPHONG");
-					this.OnNGAYDATPHONGChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NGAYTRAPHONG", DbType="Date")]
-		public System.Nullable<System.DateTime> NGAYTRAPHONG
-		{
-			get
-			{
-				return this._NGAYTRAPHONG;
-			}
-			set
-			{
-				if ((this._NGAYTRAPHONG != value))
-				{
-					this.OnNGAYTRAPHONGChanging(value);
-					this.SendPropertyChanging();
-					this._NGAYTRAPHONG = value;
-					this.SendPropertyChanged("NGAYTRAPHONG");
-					this.OnNGAYTRAPHONGChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHSAN_DATPHONG", Storage="_KHACHSAN", ThisKey="MAKS", OtherKey="MAKS", IsForeignKey=true)]
-		public KHACHSAN KHACHSAN
-		{
-			get
-			{
-				return this._KHACHSAN.Entity;
-			}
-			set
-			{
-				KHACHSAN previousValue = this._KHACHSAN.Entity;
-				if (((previousValue != value) 
-							|| (this._KHACHSAN.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._KHACHSAN.Entity = null;
-						previousValue.DATPHONGs.Remove(this);
-					}
-					this._KHACHSAN.Entity = value;
-					if ((value != null))
-					{
-						value.DATPHONGs.Add(this);
-						this._MAKS = value.MAKS;
-					}
-					else
-					{
-						this._MAKS = default(string);
-					}
-					this.SendPropertyChanged("KHACHSAN");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHHANG_DATPHONG", Storage="_KHACHHANG", ThisKey="MAKH", OtherKey="MAKH", IsForeignKey=true)]
-		public KHACHHANG KHACHHANG
-		{
-			get
-			{
-				return this._KHACHHANG.Entity;
-			}
-			set
-			{
-				KHACHHANG previousValue = this._KHACHHANG.Entity;
-				if (((previousValue != value) 
-							|| (this._KHACHHANG.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._KHACHHANG.Entity = null;
-						previousValue.DATPHONGs.Remove(this);
-					}
-					this._KHACHHANG.Entity = value;
-					if ((value != null))
-					{
-						value.DATPHONGs.Add(this);
-						this._MAKH = value.MAKH;
-					}
-					else
-					{
-						this._MAKH = default(string);
-					}
-					this.SendPropertyChanged("KHACHHANG");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.KHACHSAN")]
 	public partial class KHACHSAN : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1240,11 +1024,11 @@ namespace DAL
 		
 		private string _SDT;
 		
-		private EntitySet<DATPHONG> _DATPHONGs;
-		
 		private EntitySet<NHANVIEN> _NHANVIENs;
 		
 		private EntitySet<PHONG> _PHONGs;
+		
+		private EntitySet<DATPHONG> _DATPHONGs;
 		
 		private EntityRef<ADMINK> _ADMINK;
 		
@@ -1268,9 +1052,9 @@ namespace DAL
 		
 		public KHACHSAN()
 		{
-			this._DATPHONGs = new EntitySet<DATPHONG>(new Action<DATPHONG>(this.attach_DATPHONGs), new Action<DATPHONG>(this.detach_DATPHONGs));
 			this._NHANVIENs = new EntitySet<NHANVIEN>(new Action<NHANVIEN>(this.attach_NHANVIENs), new Action<NHANVIEN>(this.detach_NHANVIENs));
 			this._PHONGs = new EntitySet<PHONG>(new Action<PHONG>(this.attach_PHONGs), new Action<PHONG>(this.detach_PHONGs));
+			this._DATPHONGs = new EntitySet<DATPHONG>(new Action<DATPHONG>(this.attach_DATPHONGs), new Action<DATPHONG>(this.detach_DATPHONGs));
 			this._ADMINK = default(EntityRef<ADMINK>);
 			OnCreated();
 		}
@@ -1399,19 +1183,6 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHSAN_DATPHONG", Storage="_DATPHONGs", ThisKey="MAKS", OtherKey="MAKS")]
-		public EntitySet<DATPHONG> DATPHONGs
-		{
-			get
-			{
-				return this._DATPHONGs;
-			}
-			set
-			{
-				this._DATPHONGs.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHSAN_NHANVIEN", Storage="_NHANVIENs", ThisKey="MAKS", OtherKey="MAKS")]
 		public EntitySet<NHANVIEN> NHANVIENs
 		{
@@ -1435,6 +1206,19 @@ namespace DAL
 			set
 			{
 				this._PHONGs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHSAN_DATPHONG", Storage="_DATPHONGs", ThisKey="MAKS", OtherKey="MAKS")]
+		public EntitySet<DATPHONG> DATPHONGs
+		{
+			get
+			{
+				return this._DATPHONGs;
+			}
+			set
+			{
+				this._DATPHONGs.Assign(value);
 			}
 		}
 		
@@ -1492,18 +1276,6 @@ namespace DAL
 			}
 		}
 		
-		private void attach_DATPHONGs(DATPHONG entity)
-		{
-			this.SendPropertyChanging();
-			entity.KHACHSAN = this;
-		}
-		
-		private void detach_DATPHONGs(DATPHONG entity)
-		{
-			this.SendPropertyChanging();
-			entity.KHACHSAN = null;
-		}
-		
 		private void attach_NHANVIENs(NHANVIEN entity)
 		{
 			this.SendPropertyChanging();
@@ -1523,6 +1295,18 @@ namespace DAL
 		}
 		
 		private void detach_PHONGs(PHONG entity)
+		{
+			this.SendPropertyChanging();
+			entity.KHACHSAN = null;
+		}
+		
+		private void attach_DATPHONGs(DATPHONG entity)
+		{
+			this.SendPropertyChanging();
+			entity.KHACHSAN = this;
+		}
+		
+		private void detach_DATPHONGs(DATPHONG entity)
 		{
 			this.SendPropertyChanging();
 			entity.KHACHSAN = null;
@@ -2125,6 +1909,8 @@ namespace DAL
 		
 		private int _SUCCHUA;
 		
+		private EntitySet<DATPHONG> _DATPHONGs;
+		
 		private EntityRef<KHACHSAN> _KHACHSAN;
 		
     #region Extensibility Method Definitions
@@ -2147,6 +1933,7 @@ namespace DAL
 		
 		public PHONG()
 		{
+			this._DATPHONGs = new EntitySet<DATPHONG>(new Action<DATPHONG>(this.attach_DATPHONGs), new Action<DATPHONG>(this.detach_DATPHONGs));
 			this._KHACHSAN = default(EntityRef<KHACHSAN>);
 			OnCreated();
 		}
@@ -2275,6 +2062,19 @@ namespace DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PHONG_DATPHONG", Storage="_DATPHONGs", ThisKey="MAPHONG", OtherKey="MAPHONG")]
+		public EntitySet<DATPHONG> DATPHONGs
+		{
+			get
+			{
+				return this._DATPHONGs;
+			}
+			set
+			{
+				this._DATPHONGs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHSAN_PHONG", Storage="_KHACHSAN", ThisKey="MAKS", OtherKey="MAKS", IsForeignKey=true)]
 		public KHACHSAN KHACHSAN
 		{
@@ -2327,6 +2127,18 @@ namespace DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_DATPHONGs(DATPHONG entity)
+		{
+			this.SendPropertyChanging();
+			entity.PHONG = this;
+		}
+		
+		private void detach_DATPHONGs(DATPHONG entity)
+		{
+			this.SendPropertyChanging();
+			entity.PHONG = null;
 		}
 	}
 	
@@ -2561,6 +2373,287 @@ namespace DAL
 		{
 			this.SendPropertyChanging();
 			entity.KHACHHANG = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DATPHONG")]
+	public partial class DATPHONG : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _MAKS;
+		
+		private string _MAKH;
+		
+		private string _MAPHONG;
+		
+		private System.Nullable<System.DateTime> _NGAYDATPHONG;
+		
+		private System.Nullable<System.DateTime> _NGAYTRAPHONG;
+		
+		private EntityRef<KHACHSAN> _KHACHSAN;
+		
+		private EntityRef<KHACHHANG> _KHACHHANG;
+		
+		private EntityRef<PHONG> _PHONG;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMAKSChanging(string value);
+    partial void OnMAKSChanged();
+    partial void OnMAKHChanging(string value);
+    partial void OnMAKHChanged();
+    partial void OnMAPHONGChanging(string value);
+    partial void OnMAPHONGChanged();
+    partial void OnNGAYDATPHONGChanging(System.Nullable<System.DateTime> value);
+    partial void OnNGAYDATPHONGChanged();
+    partial void OnNGAYTRAPHONGChanging(System.Nullable<System.DateTime> value);
+    partial void OnNGAYTRAPHONGChanged();
+    #endregion
+		
+		public DATPHONG()
+		{
+			this._KHACHSAN = default(EntityRef<KHACHSAN>);
+			this._KHACHHANG = default(EntityRef<KHACHHANG>);
+			this._PHONG = default(EntityRef<PHONG>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAKS", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MAKS
+		{
+			get
+			{
+				return this._MAKS;
+			}
+			set
+			{
+				if ((this._MAKS != value))
+				{
+					if (this._KHACHSAN.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMAKSChanging(value);
+					this.SendPropertyChanging();
+					this._MAKS = value;
+					this.SendPropertyChanged("MAKS");
+					this.OnMAKSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAKH", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MAKH
+		{
+			get
+			{
+				return this._MAKH;
+			}
+			set
+			{
+				if ((this._MAKH != value))
+				{
+					if (this._KHACHHANG.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMAKHChanging(value);
+					this.SendPropertyChanging();
+					this._MAKH = value;
+					this.SendPropertyChanged("MAKH");
+					this.OnMAKHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAPHONG", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MAPHONG
+		{
+			get
+			{
+				return this._MAPHONG;
+			}
+			set
+			{
+				if ((this._MAPHONG != value))
+				{
+					if (this._PHONG.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMAPHONGChanging(value);
+					this.SendPropertyChanging();
+					this._MAPHONG = value;
+					this.SendPropertyChanged("MAPHONG");
+					this.OnMAPHONGChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NGAYDATPHONG", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NGAYDATPHONG
+		{
+			get
+			{
+				return this._NGAYDATPHONG;
+			}
+			set
+			{
+				if ((this._NGAYDATPHONG != value))
+				{
+					this.OnNGAYDATPHONGChanging(value);
+					this.SendPropertyChanging();
+					this._NGAYDATPHONG = value;
+					this.SendPropertyChanged("NGAYDATPHONG");
+					this.OnNGAYDATPHONGChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NGAYTRAPHONG", DbType="Date")]
+		public System.Nullable<System.DateTime> NGAYTRAPHONG
+		{
+			get
+			{
+				return this._NGAYTRAPHONG;
+			}
+			set
+			{
+				if ((this._NGAYTRAPHONG != value))
+				{
+					this.OnNGAYTRAPHONGChanging(value);
+					this.SendPropertyChanging();
+					this._NGAYTRAPHONG = value;
+					this.SendPropertyChanged("NGAYTRAPHONG");
+					this.OnNGAYTRAPHONGChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHSAN_DATPHONG", Storage="_KHACHSAN", ThisKey="MAKS", OtherKey="MAKS", IsForeignKey=true)]
+		public KHACHSAN KHACHSAN
+		{
+			get
+			{
+				return this._KHACHSAN.Entity;
+			}
+			set
+			{
+				KHACHSAN previousValue = this._KHACHSAN.Entity;
+				if (((previousValue != value) 
+							|| (this._KHACHSAN.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._KHACHSAN.Entity = null;
+						previousValue.DATPHONGs.Remove(this);
+					}
+					this._KHACHSAN.Entity = value;
+					if ((value != null))
+					{
+						value.DATPHONGs.Add(this);
+						this._MAKS = value.MAKS;
+					}
+					else
+					{
+						this._MAKS = default(string);
+					}
+					this.SendPropertyChanged("KHACHSAN");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHHANG_DATPHONG", Storage="_KHACHHANG", ThisKey="MAKH", OtherKey="MAKH", IsForeignKey=true)]
+		public KHACHHANG KHACHHANG
+		{
+			get
+			{
+				return this._KHACHHANG.Entity;
+			}
+			set
+			{
+				KHACHHANG previousValue = this._KHACHHANG.Entity;
+				if (((previousValue != value) 
+							|| (this._KHACHHANG.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._KHACHHANG.Entity = null;
+						previousValue.DATPHONGs.Remove(this);
+					}
+					this._KHACHHANG.Entity = value;
+					if ((value != null))
+					{
+						value.DATPHONGs.Add(this);
+						this._MAKH = value.MAKH;
+					}
+					else
+					{
+						this._MAKH = default(string);
+					}
+					this.SendPropertyChanged("KHACHHANG");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PHONG_DATPHONG", Storage="_PHONG", ThisKey="MAPHONG", OtherKey="MAPHONG", IsForeignKey=true)]
+		public PHONG PHONG
+		{
+			get
+			{
+				return this._PHONG.Entity;
+			}
+			set
+			{
+				PHONG previousValue = this._PHONG.Entity;
+				if (((previousValue != value) 
+							|| (this._PHONG.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PHONG.Entity = null;
+						previousValue.DATPHONGs.Remove(this);
+					}
+					this._PHONG.Entity = value;
+					if ((value != null))
+					{
+						value.DATPHONGs.Add(this);
+						this._MAPHONG = value.MAPHONG;
+					}
+					else
+					{
+						this._MAPHONG = default(string);
+					}
+					this.SendPropertyChanged("PHONG");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

@@ -31,5 +31,10 @@ namespace BUS
         {
             return phong.Xoa(maP);
         }
+
+        public DTO_Phong Lay1Phong(string maKS, string maPhong)
+        {
+            return phong.Lay1Phong(maKS,maPhong);
+        }
     }
 }

@@ -80,5 +80,37 @@ namespace DAL
             }
             return listPhong;
         }
+
+        public DTO_Phong Lay1Phong(string maKS, string maPhong)
+        {
+            var phong = ConectionData.dt.PHONGs
+                .Where(p => p.MAKS == maKS)
+                .Select(p => new DTO_Phong
+                {
+                    MaPhong = p.MAPHONG,
+                    MaKS = p.MAKS,
+                    TenPhong = p.TENPHONG,
+                    LoaiPhong = p.LOAIPHONG,
+                    Gia = p.GIA,
+                    SucChua = p.SUCCHUA,
+                });
+            List<DTO_Phong> phongs = phong.ToList();
+            foreach(DTO_Phong item in phongs)
+            {
+                if (item.MaPhong == maPhong)
+                {
+                    return item;
+                }
+            }
+                //{
+                //    MaPhong = p.MAPHONG,
+                //    MaKS = p.MAKS,
+                //    TenPhong = p.TENPHONG,
+                //    LoaiPhong = p.LOAIPHONG,
+                //    Gia = p.GIA,
+                //    SucChua = p.SUCCHUA,
+                //}).FirstOrDefault();
+            return null;
+        }
     }
 }

@@ -32,12 +32,6 @@
         <elementListCompartment Id="e2adbd9e-383a-4455-81eb-4f9f05778014" absoluteBounds="6.515, 1.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="528a0a09-13ab-4d2b-bc27-d2a1e80a935a" absoluteBounds="6.25, 3.625, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/DataKhachSanDataContext/DATPHONG" />
-      <nestedChildShapes>
-        <elementListCompartment Id="ebe44eca-5605-4ea6-a2f4-8d0e16479379" absoluteBounds="6.265, 4.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="ae56cc35-c5ae-4199-8a85-a65c6c40688c" absoluteBounds="3.5, 4.5, 2, 1.9631982421875005">
       <DataClassMoniker Name="/DataKhachSanDataContext/KHACHSAN" />
       <nestedChildShapes>
@@ -63,14 +57,7 @@
         <classShapeMoniker Id="db5ea6ff-d64b-4671-956c-9da305e2317a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 4.85179768880208); (6.25 : 4.85179768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/DataKhachSanDataContext/KHACHSAN/KHACHSAN_DATPHONG" />
-      <nodes>
-        <classShapeMoniker Id="ae56cc35-c5ae-4199-8a85-a65c6c40688c" />
-        <classShapeMoniker Id="528a0a09-13ab-4d2b-bc27-d2a1e80a935a" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 5.41429768880208); (3.5 : 5.41429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 5.41429768880208); (3.04166666666667 : 5.41429768880208 : JumpStart); (3.20833333333333 : 5.41429768880208 : JumpEnd); (3.5 : 5.41429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataKhachSanDataContext/ADMINK/ADMINK_KHACHSAN" />
       <nodes>
         <classShapeMoniker Id="bdcfd350-0baa-4f3a-a315-dab0cb7fab55" />
@@ -98,14 +85,14 @@
         <classShapeMoniker Id="c3dc4ee4-6a88-4999-9c34-6b11edd74ab6" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.40625 : 2.06899251302083); (8.40625 : 5.96559895833333); (9.25 : 5.96559895833333)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(7.5 : 2.06899251302083); (7.5 : 5.39505126953125); (9.25 : 5.39505126953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataKhachSanDataContext/CHUCVU/CHUCVU_NHANVIEN" />
       <nodes>
         <classShapeMoniker Id="07a03c1e-0f35-4895-acb2-fe557b32bb44" />
         <classShapeMoniker Id="e93243ac-2d23-4be3-8631-446d91e20f6e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 5.55334716796875); (8.32291666666667 : 5.55334716796875 : JumpStart); (8.48958333333333 : 5.55334716796875 : JumpEnd); (9.25 : 5.55334716796875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 5.91627563476563); (9.25 : 5.91627563476563)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataKhachSanDataContext/KHACHSAN/KHACHSAN_NHANVIEN" />
       <nodes>
         <classShapeMoniker Id="ae56cc35-c5ae-4199-8a85-a65c6c40688c" />
@@ -118,7 +105,7 @@
         <elementListCompartment Id="0aa3cae5-8434-4320-99c8-2d760be297bd" absoluteBounds="2.515, 8.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4 : 6.4631982421875); (4 : 8.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4 : 6.4631982421875); (4 : 8.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataKhachSanDataContext/KHACHSAN/KHACHSAN_PHONG" />
       <nodes>
         <classShapeMoniker Id="ae56cc35-c5ae-4199-8a85-a65c6c40688c" />
@@ -131,11 +118,31 @@
         <elementListCompartment Id="75d3f8e9-11e1-4ef0-bad9-33ed9b061d02" absoluteBounds="2.765, 1.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.75 : 2.76849609375); (6.34375 : 2.76849609375); (6.34375 : 3.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="c566ed5f-3211-4a9d-8832-75ae98064d57" absoluteBounds="6.125, 6.375, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/DataKhachSanDataContext/DATPHONG" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4e51f44b-50e1-4640-a63a-49acb6fd6df1" absoluteBounds="6.14, 6.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.5 : 6.4631982421875); (4.5 : 7.26044840494792); (6.125 : 7.26044840494792)]" fixedFrom="Algorithm" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DataKhachSanDataContext/KHACHSAN/KHACHSAN_DATPHONG" />
+      <nodes>
+        <classShapeMoniker Id="ae56cc35-c5ae-4199-8a85-a65c6c40688c" />
+        <classShapeMoniker Id="c566ed5f-3211-4a9d-8832-75ae98064d57" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.125 : 3.40549967447917); (3.125 : 7.73442510742187); (3.91666666666667 : 7.73442510742187 : JumpStart); (4.08333333333333 : 7.73442510742187 : JumpEnd); (6.125 : 7.73442510742187)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataKhachSanDataContext/KHACHHANG/KHACHHANG_DATPHONG" />
       <nodes>
         <classShapeMoniker Id="99a1bddb-ccef-4ca0-b9c6-062ddd72692b" />
-        <classShapeMoniker Id="528a0a09-13ab-4d2b-bc27-d2a1e80a935a" />
+        <classShapeMoniker Id="c566ed5f-3211-4a9d-8832-75ae98064d57" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.5 : 9.23159912109375); (7.125 : 9.23159912109375); (7.125 : 8.14589680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataKhachSanDataContext/PHONG/PHONG_DATPHONG" />
+      <nodes>
+        <classShapeMoniker Id="962e93ef-68b6-4e20-b39f-5b06ff3aa5f0" />
+        <classShapeMoniker Id="c566ed5f-3211-4a9d-8832-75ae98064d57" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>
