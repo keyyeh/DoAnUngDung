@@ -46,10 +46,10 @@ namespace DAL
             }
             return 1;
         }
-        public void Sua(DTO_DatPhong dp)
+        public void Sua(string maPhong)
         {
-            var sua = ConectionData.dt.DATPHONGs.Single(datPhong => datPhong.MAKS == dp.MaKS);
-            sua.NGAYTRAPHONG = dp.NgayTraPhong;
+            var sua = ConectionData.dt.DATPHONGs.Single(datPhong => datPhong.MAPHONG == maPhong);
+            sua.NGAYTRAPHONG = DateTime.Now;
 
             ConectionData.dt.DATPHONGs.InsertOnSubmit(sua);
             ConectionData.dt.SubmitChanges();

@@ -62,6 +62,33 @@ namespace DAL
                 ConectionData.dt.SubmitChanges();
             }
         }
-
+        public DTO_KhachHang Lay1KhachHang(string maKS,string maPhong)
+        {
+            var khachHang = (from kh in ConectionData.dt.KHACHHANGs
+                            join dp in ConectionData.dt.DATPHONGs on kh.MAKH equals dp.MAKH
+                            join p in ConectionData.dt.PHONGs on dp.MAPHONG equals p.MAPHONG
+                            where dp.MAKS == maKS && p.MAPHONG == maPhong
+                            select new
+                            {
+                                MAKH = kh.MAKH,
+                                TENKH = kh.TENKH,
+                                CCCD = kh.CMND,
+                                SDT = kh.SDT,
+                                EMAIL = kh.EMAIL,
+                                DIACHI = kh.DIACHI
+                            }).ToList();
+            DTO_KhachHang dtoKhachHang = null;
+            foreach (var k in khachHang)
+            {
+                string maKH = k.MAKH;
+                string tenKH = k.TENKH;
+                string cccD = k.CCCD;
+                string sdt = k.SDT;
+                string email = k.EMAIL;
+                string diaChi = k.DIACHI;
+                dtoKhachHang = new DTO_KhachHang(maKH, tenKH, cccD, true, diaChi,email, sdt);
+            }
+            return dtoKhachHang;
+        }
     }
 }

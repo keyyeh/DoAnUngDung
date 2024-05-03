@@ -36,7 +36,7 @@ namespace GUI
         private void ucKhachSan_Load(object sender, EventArgs e)
         {
             List<DTO_Phong> xem = busPhong.LayDuLieu();
-
+            int dem = 2;
             foreach (var item in xem)
             {
                 //Lưu 2 giá trị mã khách sạn và mã phòng vào trong Tag
@@ -50,6 +50,7 @@ namespace GUI
                 pic.SizeMode = PictureBoxSizeMode.StretchImage;
                 pic.Height = 80;
                 pic.Tag = ma;
+                pic.Name = "PictureBox" + dem.ToString();
                 label.AutoSize = false;
                 label.Text = item.TenPhong;
                 label.Dock = DockStyle.Bottom;
@@ -61,18 +62,24 @@ namespace GUI
                 panel.Controls.Add(label);
                 pic.DoubleClick += new System.EventHandler(this.double_room);
                 flowLayoutPanel1.Controls.Add(panel);
+                dem++;
+                if (busPhong.CheckPhong(item.MaPhong))
+                {
+                    pic.BackColor = SystemColors.Info;
+                }
+                else
+                {
+                    pic.BackColor = SystemColors.Control;
+                }
             }
             string[] maKS = (string[])pic.Tag;
             dgvDatPhong.DataSource = busDatPhong.Xem(maKS[0]);
-
         }
-
         private void double_room(object sender, EventArgs e)
         {
             
             // Trả về đối tượng control
             PictureBox pic = sender as PictureBox;
-            Label lb = sender as Label;
 
             //Truy xuất các giá trị của Tag
             string[] layStr = (string[])pic.Tag;
@@ -88,6 +95,23 @@ namespace GUI
             DTO_Phong phong = busPhong.Lay1Phong(maKS, maPhong);
             txtMaPhong.Text = phong.MaPhong;
             txtTenPhong.Text = phong.TenPhong;
+            txtLoaiPhong.Text = phong.LoaiPhong;
+            txtGia.Text = phong.Gia.ToString();
+
+            dtoKhachHang = busKhachHang.Lay1KhachHang(maKS, maPhong);
+            if (dtoKhachHang != null)
+            {
+                txtMaKH.Text = dtoKhachHang.MaKH;
+                txtTenKH.Text = dtoKhachHang.TenKH;
+                txtCCCD.Text = dtoKhachHang.CMND;
+                txtSDT.Text = dtoKhachHang.Sdt;
+                txtEmail.Text = dtoKhachHang.Email;
+                rtbDiaChi.Text = dtoKhachHang.DiaChi;
+            }
+            else
+            {
+                txtMaKH.Text = txtTenKH.Text = txtCCCD.Text = txtSDT.Text = txtEmail.Text = rtbDiaChi.Text = "";
+            }
 
         }
 
@@ -107,8 +131,6 @@ namespace GUI
 
         private void btnDatPhong_Click(object sender, EventArgs e)
         {
-            
-
             string maKS = txtMaKS.Text;
             DTO_KhachSan ks = busKhachSan.LayDuLieu(maKS);
             string tenKS = txtTenKS.Text;
@@ -141,8 +163,19 @@ namespace GUI
             {
                 MessageBox.Show("Thất bại!!!!!");
             }
-            
-            
+            dgvDatPhong.DataSource = busDatPhong.Xem(maKS);
+            if (busPhong.CheckPhong(maPhong))
+            {
+                pic.BackColor = SystemColors.Info;
+            }
+            else
+            {
+                pic.BackColor = SystemColors.Control;
+            }
+        }
+
+        private void btnTraPhong_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -15,6 +15,16 @@ namespace DAL
                         select P;
             return phong;
         }
+
+        public bool CheckPhong(string maPhong)
+        {
+            var check = (from kh in ConectionData.dt.KHACHHANGs
+                        join dp in ConectionData.dt.DATPHONGs on kh.MAKH equals dp.MAKH
+                        where dp.MAPHONG == maPhong
+                        select kh).Any();
+            return check;
+        }
+
         public int Them(DTO_Phong p)
         {
             try
@@ -26,7 +36,7 @@ namespace DAL
                     TENPHONG = p.TenPhong,
                     LOAIPHONG = p.LoaiPhong,
                     GIA = p.Gia,
-                    SUCCHUA = p.SucChua,
+                    VITRI = p.ViTri,
                 };
                 ConectionData.dt.PHONGs.InsertOnSubmit(phong);
             }
@@ -44,7 +54,7 @@ namespace DAL
             sua.TENPHONG = p.TenPhong;
             sua.LOAIPHONG = p.LoaiPhong;
             sua.GIA = p.Gia;
-            sua.SUCCHUA = p.SucChua;
+            sua.VITRI = p.ViTri;
 
             ConectionData.dt.PHONGs.InsertOnSubmit(sua);
             ConectionData.dt.SubmitChanges();
@@ -75,7 +85,7 @@ namespace DAL
                 values.TenPhong = item.TENPHONG;
                 values.LoaiPhong = item.LOAIPHONG;
                 values.Gia = item.GIA;
-                values.SucChua = item.SUCCHUA;
+                values.ViTri = item.VITRI;
                 listPhong.Add(values);
             }
             return listPhong;
@@ -92,7 +102,7 @@ namespace DAL
                     TenPhong = p.TENPHONG,
                     LoaiPhong = p.LOAIPHONG,
                     Gia = p.GIA,
-                    SucChua = p.SUCCHUA,
+                    ViTri = p.VITRI,
                 });
             List<DTO_Phong> phongs = phong.ToList();
             foreach(DTO_Phong item in phongs)
@@ -102,14 +112,6 @@ namespace DAL
                     return item;
                 }
             }
-                //{
-                //    MaPhong = p.MAPHONG,
-                //    MaKS = p.MAKS,
-                //    TenPhong = p.TENPHONG,
-                //    LoaiPhong = p.LOAIPHONG,
-                //    Gia = p.GIA,
-                //    SucChua = p.SUCCHUA,
-                //}).FirstOrDefault();
             return null;
         }
     }

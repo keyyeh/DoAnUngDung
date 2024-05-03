@@ -19,6 +19,11 @@ namespace BUS
         {
             return phong.Xem();
         }
+
+        public bool CheckPhong(string maPhong)
+        {
+            return phong.CheckPhong(maPhong);
+        }
         public int Them(DTO_Phong p)
         {
             return phong.Them(p);

@@ -15,5 +15,9 @@ namespace BUS
         {
             return khachHang.Them(kh);
         }
+        public DTO_KhachHang Lay1KhachHang(string maKS,string maPhong)
+        {
+            return khachHang.Lay1KhachHang(maKS, maPhong);
+        }
     }
 }
