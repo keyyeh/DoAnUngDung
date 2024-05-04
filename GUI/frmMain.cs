@@ -19,10 +19,10 @@ namespace GUI
 
         private void accordionControlElement2_Click(object sender, EventArgs e)
         {
-            ucKhachSan khachSan = new ucKhachSan();
-            khachSan.Dock = DockStyle.Fill;
-            fluentDesignFormContainer1.Controls.Add(khachSan);
-            khachSan.BringToFront();
+            ucText phong = new ucText();
+            phong.Dock = DockStyle.Fill;
+            fluentDesignFormContainer1.Controls.Add(phong);
+            phong.BringToFront();
         }
     }
 }

@@ -66,7 +66,7 @@ namespace DAL
     #endregion
 		
 		public DataKhachSanDataContext() : 
-				base(global::DAL.Properties.Settings.Default.QLKHACHSANConnectionString1, mappingSource)
+				base(global::DAL.Properties.Settings.Default.QLKHACHSANConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

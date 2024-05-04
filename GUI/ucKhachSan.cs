@@ -1,6 +1,7 @@
 ﻿using BUS;
 using DTO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -80,6 +81,8 @@ namespace GUI
             
             // Trả về đối tượng control
             PictureBox pic = sender as PictureBox;
+
+            
 
             //Truy xuất các giá trị của Tag
             string[] layStr = (string[])pic.Tag;
@@ -176,9 +179,7 @@ namespace GUI
 
         private void btnTraPhong_Click(object sender, EventArgs e)
         {
-            
-            frmXuatPhieu xuatPhieu = new frmXuatPhieu(txtMaKS.Text,txtMaPhong.Text,txtMaKH.Text);
-            xuatPhieu.ShowDialog();
+
         }
     }
 }
