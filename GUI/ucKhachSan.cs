@@ -176,7 +176,9 @@ namespace GUI
 
         private void btnTraPhong_Click(object sender, EventArgs e)
         {
-
+            
+            frmXuatPhieu xuatPhieu = new frmXuatPhieu(txtMaKS.Text,txtMaPhong.Text,txtMaKH.Text);
+            xuatPhieu.ShowDialog();
         }
     }
 }
