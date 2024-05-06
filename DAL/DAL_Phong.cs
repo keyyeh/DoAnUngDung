@@ -19,7 +19,7 @@ namespace DAL
         public bool CheckPhong(string maPhong)
         {
             var check = (from kh in ConectionData.dt.KHACHHANGs
-                        join dp in ConectionData.dt.DATPHONGs on kh.MAKH equals dp.MAKH
+                        join dp in ConectionData.dt.DATPHONGs on kh.SDT equals dp.SDT
                         where dp.MAPHONG == maPhong
                         select kh).Any();
             return check;
@@ -33,10 +33,11 @@ namespace DAL
                 {
                     MAPHONG = p.MaPhong,
                     MAKS = p.MaKS,
+                    MATANG = p.MaTang,
                     TENPHONG = p.TenPhong,
                     LOAIPHONG = p.LoaiPhong,
                     GIA = p.Gia,
-                    VITRI = p.ViTri,
+                    SUCCHUA = p.SucChua,
                 };
                 ConectionData.dt.PHONGs.InsertOnSubmit(phong);
             }
@@ -51,10 +52,11 @@ namespace DAL
             var sua = ConectionData.dt.PHONGs.Single(phong => phong.MAPHONG == p.MaPhong);
 
             sua.MAKS = p.MaKS;
+            sua.MATANG = p.MaTang;
             sua.TENPHONG = p.TenPhong;
             sua.LOAIPHONG = p.LoaiPhong;
             sua.GIA = p.Gia;
-            sua.VITRI = p.ViTri;
+            sua.SUCCHUA = p.SucChua;
 
             ConectionData.dt.PHONGs.InsertOnSubmit(sua);
             ConectionData.dt.SubmitChanges();
@@ -82,10 +84,11 @@ namespace DAL
                 DTO_Phong values = new DTO_Phong();
                 values.MaPhong = item.MAPHONG;
                 values.MaKS = item.MAKS;
+                values.MaTang = item.MATANG;
                 values.TenPhong = item.TENPHONG;
                 values.LoaiPhong = item.LOAIPHONG;
                 values.Gia = item.GIA;
-                values.ViTri = item.VITRI;
+                values.SucChua = item.SUCCHUA;
                 listPhong.Add(values);
             }
             return listPhong;
@@ -99,10 +102,11 @@ namespace DAL
                 {
                     MaPhong = p.MAPHONG,
                     MaKS = p.MAKS,
+                    MaTang = p.MATANG,
                     TenPhong = p.TENPHONG,
                     LoaiPhong = p.LOAIPHONG,
                     Gia = p.GIA,
-                    ViTri = p.VITRI,
+                    SucChua = p.SUCCHUA
                 });
             List<DTO_Phong> phongs = phong.ToList();
             foreach(DTO_Phong item in phongs)
@@ -114,5 +118,7 @@ namespace DAL
             }
             return null;
         }
+
+
     }
 }

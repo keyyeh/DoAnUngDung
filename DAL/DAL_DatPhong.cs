@@ -12,16 +12,15 @@ namespace DAL
         public IQueryable Xem(string maKS)
         {
             var xem = from dp in ConectionData.dt.DATPHONGs  
-                      join kh in ConectionData.dt.KHACHHANGs on dp.MAKH equals kh.MAKH
+                      join kh in ConectionData.dt.KHACHHANGs on dp.SDT equals kh.SDT
                       join p in ConectionData.dt.PHONGs on dp.MAPHONG equals p.MAPHONG
                       where dp.MAKS == maKS
                       select new
                       {
-                          MAKH = kh.MAKH,
+                          SDT = kh.SDT,
                           TENKH = kh.TENKH,
                           PHONG = p.TENPHONG,
                           CCCD = kh.CMND,
-                          SDT = kh.SDT,
                           EMAIL = kh.EMAIL,
                           GIOITINH = kh.GIOITINH,
                       };
@@ -33,10 +32,12 @@ namespace DAL
             {
                 DATPHONG datPhong = new DATPHONG
                 {
-                    MAKH = dp.MaKH,
+                    
                     MAKS = dp.MaKS,
+                    SDT = dp.SDT,
                     MAPHONG = dp.MaPhong,
-                    NGAYDATPHONG = dp.NgayDatPhong
+                    NGAYDATPHONG = dp.NgayDatPhong,
+                    NGAYTRAPHONG = dp.NgayTraPhong
                 };
                 ConectionData.dt.DATPHONGs.InsertOnSubmit(datPhong);
             }

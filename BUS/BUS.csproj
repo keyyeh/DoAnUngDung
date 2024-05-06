@@ -45,6 +45,7 @@
     <Compile Include="BUS_KhachHang.cs" />
     <Compile Include="BUS_Phong.cs" />
     <Compile Include="BUS_KhachSan.cs" />
+    <Compile Include="BUS_Tang.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

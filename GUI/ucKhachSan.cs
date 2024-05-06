@@ -79,42 +79,42 @@ namespace GUI
         private void double_room(object sender, EventArgs e)
         {
             
-            // Trả về đối tượng control
-            PictureBox pic = sender as PictureBox;
+            //// Trả về đối tượng control
+            //PictureBox pic = sender as PictureBox;
 
             
 
-            //Truy xuất các giá trị của Tag
-            string[] layStr = (string[])pic.Tag;
-            string maKS = layStr[0];
-            string maPhong = layStr[1];
+            ////Truy xuất các giá trị của Tag
+            //string[] layStr = (string[])pic.Tag;
+            //string maKS = layStr[0];
+            //string maPhong = layStr[1];
 
-            // Lấy dữ liệu của 1 khách sạn
-            DTO_KhachSan ks = busKhachSan.LayDuLieu(maKS);
-            txtMaKS.Text = ks.MaKS;
-            txtTenKS.Text = ks.TenKS;
+            //// Lấy dữ liệu của 1 khách sạn
+            //DTO_KhachSan ks = busKhachSan.LayDuLieu(maKS);
+            //txtMaKS.Text = ks.MaKS;
+            //txtTenKS.Text = ks.TenKS;
 
-            // Lấy dữ liệu của 1 phòng
-            DTO_Phong phong = busPhong.Lay1Phong(maKS, maPhong);
-            txtMaPhong.Text = phong.MaPhong;
-            txtTenPhong.Text = phong.TenPhong;
-            txtLoaiPhong.Text = phong.LoaiPhong;
-            txtGia.Text = phong.Gia.ToString();
+            //// Lấy dữ liệu của 1 phòng
+            //DTO_Phong phong = busPhong.Lay1Phong(maKS, maPhong);
+            //txtMaPhong.Text = phong.MaPhong;
+            //txtTenPhong.Text = phong.TenPhong;
+            //txtLoaiPhong.Text = phong.LoaiPhong;
+            //txtGia.Text = phong.Gia.ToString();
 
-            dtoKhachHang = busKhachHang.Lay1KhachHang(maKS, maPhong);
-            if (dtoKhachHang != null)
-            {
-                txtMaKH.Text = dtoKhachHang.MaKH;
-                txtTenKH.Text = dtoKhachHang.TenKH;
-                txtCCCD.Text = dtoKhachHang.CMND;
-                txtSDT.Text = dtoKhachHang.Sdt;
-                txtEmail.Text = dtoKhachHang.Email;
-                rtbDiaChi.Text = dtoKhachHang.DiaChi;
-            }
-            else
-            {
-                txtMaKH.Text = txtTenKH.Text = txtCCCD.Text = txtSDT.Text = txtEmail.Text = rtbDiaChi.Text = "";
-            }
+            //dtoKhachHang = busKhachHang.Lay1KhachHang(maKS, maPhong);
+            //if (dtoKhachHang != null)
+            //{
+            //    txtMaKH.Text = dtoKhachHang.Sdt;
+            //    txtTenKH.Text = dtoKhachHang.TenKH;
+            //    txtCCCD.Text = dtoKhachHang.CMND;
+            //    txtSDT.Text = dtoKhachHang.Sdt;
+            //    txtEmail.Text = dtoKhachHang.Email;
+            //    rtbDiaChi.Text = dtoKhachHang.DiaChi;
+            //}
+            //else
+            //{
+            //    txtMaKH.Text = txtTenKH.Text = txtCCCD.Text = txtSDT.Text = txtEmail.Text = rtbDiaChi.Text = "";
+            //}
 
         }
 
@@ -155,7 +155,7 @@ namespace GUI
                 }
             }
             
-            dtoKhachHang = new DTO_KhachHang(maKH, tenKH,cccd,gioiTinh,diaChi,email,sdt);
+            dtoKhachHang = new DTO_KhachHang(sdt, tenKH,cccd,gioiTinh,diaChi,email);
             dtoDatPhong = new DTO_DatPhong(maKS, maKH, maPhong, DateTime.Now);
 
             if (busKhachHang.Them(dtoKhachHang) == 1 && busDatPhong.Them(dtoDatPhong) == 1 )
