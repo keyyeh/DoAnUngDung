@@ -11,6 +11,10 @@ namespace BUS
     public class BUS_KhachHang
     {
         DAL_KhachHang khachHang = new DAL_KhachHang();
+        public IQueryable Xem(string sdt)
+        {
+            return khachHang.Xem(sdt);
+        }
         public int Them(DTO_KhachHang kh)
         {
             return khachHang.Them(kh);

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace GUI
 {
@@ -34,26 +35,16 @@ namespace GUI
         DTO_DatPhong dtoDatPhong;
         private void frmPhong_Load(object sender, EventArgs e)
         {
-            
+            cbLoaiHinh.SelectedIndex = 0;
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
 
-            string tenKH = txtTenKH.Text;
-            string cccd = txtCCCD.Text;
-            string email = txtEmail.Text;
             string sdt = txtSDT.Text;
-            string diaChi = txtDiaChi.Text;
-            bool gioiTinh = false;
 
-            foreach (RadioButton rb in groupBox2.Controls)
-            {
-                if (rb.Text == "Nam" && rb.Checked)
-                {
-                    gioiTinh = true;
-                }
-            }
+
+           
             string dateInStr = dtpDateIn.Value.ToString("yyyy-MM-dd");
             string timeInStr = dtpTimeIn.Value.ToString("HH:mm:ss");
             DateTime dateTimeIn = DateTime.ParseExact(dateInStr + " " + timeInStr, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
@@ -63,15 +54,15 @@ namespace GUI
             DateTime dateTimeOut = DateTime.ParseExact(dateOutStr + " " + timeOutStr, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
 
             dtoDatPhong = new DTO_DatPhong(maKS, sdt, maPhong, dateTimeIn, dateTimeOut);
-            dtoKhachHang = new DTO_KhachHang(sdt, tenKH, cccd, gioiTinh, diaChi, email);
+            
 
-            if (busKhachHang.Them(dtoKhachHang) == 1 && busDatPhong.Them(dtoDatPhong) == 1)
+            if (busDatPhong.Them(dtoDatPhong) == 1)
             {
                 MessageBox.Show("Đặt phòng thành công", "Thông báo");
             }
             else
             {
-                MessageBox.Show("Thất bại!!!!!");
+                MessageBox.Show("Khách hàng đã đặt phòng");
             }
         }
 
@@ -92,6 +83,39 @@ namespace GUI
                 txtEmail.Text = kh.Email;
             }
             
+        }
+
+        private void btnCapNhat_Click(object sender, EventArgs e)
+        {
+            string tenKH = txtTenKH.Text;
+            string cccd = txtCCCD.Text;
+            string email = txtEmail.Text;
+            string sdt = txtSDT.Text;
+            string diaChi = txtDiaChi.Text;
+            bool gioiTinh = false;
+            foreach (RadioButton rb in groupBox2.Controls)
+            {
+                if (rb.Text == "Nam" && rb.Checked)
+                {
+                    gioiTinh = true;
+                }
+            }
+            if (busKhachHang.LayKhachHang(txtSDT.Text) == null)
+            {
+                dtoKhachHang = new DTO_KhachHang(sdt, tenKH, cccd, gioiTinh, diaChi, email);
+                busKhachHang.Them(dtoKhachHang);
+            }
+            dgvDSKH.DataSource = busKhachHang.Xem(txtSDT.Text);
+        }
+
+        private void dgvDSKH_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int viTri = e.RowIndex;
+            if (viTri >= 0)
+            {
+                DataGridViewRow row = dgvDSKH.Rows[viTri];
+                dgvPhong.DataSource = busDatPhong.Xem(row.Cells[0].Value.ToString());
+            }
         }
     }
 }

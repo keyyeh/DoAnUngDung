@@ -10,9 +10,10 @@ namespace DAL
     public class DAL_KhachHang
     {
 
-        public IQueryable Xem()
+        public IQueryable Xem(string sdt)
         {
             var KhachHang = from KH in ConectionData.dt.KHACHHANGs
+                            where KH.SDT == sdt
                             select KH;
             return KhachHang;
         }
