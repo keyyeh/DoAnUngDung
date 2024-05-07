@@ -47,6 +47,7 @@
     <Compile Include="DTO_NhanVien.cs" />
     <Compile Include="DTO_Phong.cs" />
     <Compile Include="DTO_Tang.cs" />
+    <Compile Include="DTO_ThongTinDatPhong.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

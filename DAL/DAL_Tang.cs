@@ -39,6 +39,7 @@ namespace DAL
                 p.MaTang = item.MATANG;
                 p.TenPhong = item.TENPHONG;
                 p.LoaiPhong = item.LOAIPHONG;
+                p.Gia = item.GIA;
                 p.SucChua = item.SUCCHUA;
                 phong.Add(p);
             }

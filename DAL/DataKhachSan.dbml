@@ -59,6 +59,7 @@
       <Column Name="DIACHI" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="EMAIL" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Association Name="KHACHHANG_DATPHONG" Member="DATPHONGs" ThisKey="SDT" OtherKey="SDT" Type="DATPHONG" />
+      <Association Name="KHACHHANG_HOADON" Member="HOADONs" ThisKey="SDT" OtherKey="SDT" Type="HOADON" />
     </Type>
   </Table>
   <Table Name="dbo.KHACHSAN" Member="KHACHSANs">
@@ -127,6 +128,18 @@
       <Association Name="KHACHSAN_DATPHONG" Member="KHACHSAN" ThisKey="MAKS" OtherKey="MAKS" Type="KHACHSAN" IsForeignKey="true" />
       <Association Name="KHACHHANG_DATPHONG" Member="KHACHHANG" ThisKey="SDT" OtherKey="SDT" Type="KHACHHANG" IsForeignKey="true" />
       <Association Name="PHONG_DATPHONG" Member="PHONG" ThisKey="MAPHONG" OtherKey="MAPHONG" Type="PHONG" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HOADON" Member="HOADONs">
+    <Type Name="HOADON">
+      <Column Name="MAHD" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENKS" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TENKH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="NGAYDATPHONG" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGATTRAPHONG" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TONGTIEN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="KHACHHANG_HOADON" Member="KHACHHANG" ThisKey="SDT" OtherKey="SDT" Type="KHACHHANG" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

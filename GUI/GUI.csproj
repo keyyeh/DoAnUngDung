@@ -74,18 +74,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\DataKhachSanDataContext.cs" />
+    <Compile Include="crpInPhieuXuat.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpInPhieuXuat.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataHoaDon.cs">
+      <DependentUpon>DataHoaDon.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataHoaDon.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataHoaDon.xsd</DependentUpon>
+    </Compile>
     <Compile Include="frmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmDangNhap.Designer.cs">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmDatPhong.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmDatPhong.Designer.cs">
-      <DependentUpon>frmDatPhong.cs</DependentUpon>
     </Compile>
     <Compile Include="frmKhachHang.cs">
       <SubType>Form</SubType>
@@ -104,6 +111,12 @@
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDatPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDatPhong.Designer.cs">
+      <DependentUpon>frmDatPhong.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPhong.cs">
       <SubType>Form</SubType>
@@ -149,11 +162,12 @@
     <Compile Include="ucSoDoPhong.Designer.cs">
       <DependentUpon>ucSoDoPhong.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="crpInPhieuXuat.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpInPhieuXuat.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmDatPhong.resx">
-      <DependentUpon>frmDatPhong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmKhachHang.resx">
       <DependentUpon>frmKhachHang.cs</DependentUpon>
@@ -163,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDatPhong.resx">
+      <DependentUpon>frmDatPhong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPhong.resx">
       <DependentUpon>frmPhong.cs</DependentUpon>
@@ -196,6 +213,17 @@
     <EmbeddedResource Include="ucSoDoPhong.resx">
       <DependentUpon>ucSoDoPhong.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="DataHoaDon.xsc">
+      <DependentUpon>DataHoaDon.xsd</DependentUpon>
+    </None>
+    <None Include="DataHoaDon.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataHoaDon.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataHoaDon.xss">
+      <DependentUpon>DataHoaDon.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -221,6 +249,9 @@
       <Project>{1a270ed7-53cb-4d89-ac7c-b7f9ae1f781d}</Project>
       <Name>DTO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

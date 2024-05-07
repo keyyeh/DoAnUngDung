@@ -28,7 +28,8 @@ namespace GUI
         BUS_Tang busTang = new BUS_Tang();
         BUS_Phong busPhong = new BUS_Phong();
         Panel panel;
-        string maKS,maPhong;
+        string maKS,maPhong,maTang;
+        double gia;
         private void ucText_Load(object sender, EventArgs e)
         {
 
@@ -47,7 +48,7 @@ namespace GUI
                 List<DTO_Phong> phong = busTang.CheckTang(dtoTang.MaTang);
                 foreach (var item in phong)
                 {
-                    string[] arr = new string[] {item.MaKS,item.MaPhong};
+                    string[] arr = new string[] {item.MaKS,item.MaPhong,item.Gia.ToString(),dtoTang.MaTang};
                     panel = new Panel();
                     panel.Width = 200;
                     panel.Height = 100;
@@ -83,12 +84,40 @@ namespace GUI
                 string[] arr = (string[])p.Tag;
                 maKS = arr[0];
                 maPhong = arr[1];
+                gia = double.Parse(arr[2]);
+                maTang = arr[3];
             }
         }
         private void nhậnPhòngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmPhong phong = new frmPhong(maKS, maPhong);
+            frmDatPhong phong = new frmDatPhong(maKS, maPhong,gia);
             phong.StartPosition = FormStartPosition.CenterParent;
+            phong.ShowDialog();
+        }
+
+        private void đặtPhòngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmXuatPhieu xuatPhieu = new frmXuatPhieu(maPhong);
+            xuatPhieu.StartPosition = FormStartPosition.CenterParent;
+            xuatPhieu.ShowDialog();
+        }
+
+        private void xóaPhòngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (busPhong.Xoa(maPhong) > 0 )
+            {
+                MessageBox.Show("Xóa thành công");
+            }
+            else
+            {
+                MessageBox.Show("Xóa thất bại");
+            }
+        }
+
+        private void thêmPhòngMớiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPhong phong = new frmPhong(maKS,maTang);
+            phong.StartPosition=FormStartPosition.CenterParent;
             phong.ShowDialog();
         }
 

@@ -20,5 +20,13 @@ namespace BUS
         {
             return dPhong.Them(datPhong);
         }
+        public IEnumerable<DTO_ThongTinDatPhong> InPhieu(string maPhong)
+        {
+            return dPhong.InPhieu(maPhong);
+        }
+        public int Xoa(string maPhong)
+        {
+            return dPhong.Xoa(maPhong);
+        }
     }
 }
