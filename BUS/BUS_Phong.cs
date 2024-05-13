@@ -15,6 +15,10 @@ namespace BUS
         {
             return phong.LayDuLieu();
         }
+        public int TimViTriPhong(string maMP)
+        {
+            return phong.TimViTriPhong(maMP);
+        }
         public IQueryable Xem()
         {
             return phong.Xem();
@@ -37,9 +41,9 @@ namespace BUS
             return phong.Xoa(maP);
         }
 
-        public DTO_Phong Lay1Phong(string maKS, string maPhong)
+        public DTO_Phong Lay1Phong(string maKS,string maTang ,string maPhong)
         {
-            return phong.Lay1Phong(maKS,maPhong);
+            return phong.Lay1Phong(maKS,maTang,maPhong);
         }
     }
 }

@@ -88,23 +88,29 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataHoaDon.xsd</DependentUpon>
     </Compile>
+    <Compile Include="frmCapNhat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCapNhat.Designer.cs">
+      <DependentUpon>frmCapNhat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCapNhatPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCapNhatPhong.Designer.cs">
+      <DependentUpon>frmCapNhatPhong.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmDangNhap.Designer.cs">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmKhachHang.cs">
+    <Compile Include="frmLoaiSP.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmKhachHang.Designer.cs">
-      <DependentUpon>frmKhachHang.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmKhachSan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmKhachSan.Designer.cs">
-      <DependentUpon>frmKhachSan.cs</DependentUpon>
+    <Compile Include="frmLoaiSP.Designer.cs">
+      <DependentUpon>frmLoaiSP.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -118,11 +124,23 @@
     <Compile Include="frmDatPhong.Designer.cs">
       <DependentUpon>frmDatPhong.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPhong.cs">
+    <Compile Include="frmSoLuong.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPhong.Designer.cs">
-      <DependentUpon>frmPhong.cs</DependentUpon>
+    <Compile Include="frmSoLuong.Designer.cs">
+      <DependentUpon>frmSoLuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThemPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemPhong.Designer.cs">
+      <DependentUpon>frmThemPhong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThemSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemSanPham.Designer.cs">
+      <DependentUpon>frmThemSanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="frmXuatPhieu.cs">
       <SubType>Form</SubType>
@@ -132,29 +150,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ucChamCong.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ucChamCong.Designer.cs">
-      <DependentUpon>ucChamCong.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ucKhachSan.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ucKhachSan.Designer.cs">
-      <DependentUpon>ucKhachSan.cs</DependentUpon>
-    </Compile>
     <Compile Include="ucNhanVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucNhanVien.Designer.cs">
       <DependentUpon>ucNhanVien.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ucPhong.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ucPhong.Designer.cs">
-      <DependentUpon>ucPhong.cs</DependentUpon>
     </Compile>
     <Compile Include="ucSoDoPhong.cs">
       <SubType>UserControl</SubType>
@@ -166,14 +166,17 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crpInPhieuXuat.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCapNhat.resx">
+      <DependentUpon>frmCapNhat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCapNhatPhong.resx">
+      <DependentUpon>frmCapNhatPhong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmKhachHang.resx">
-      <DependentUpon>frmKhachHang.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmKhachSan.resx">
-      <DependentUpon>frmKhachSan.cs</DependentUpon>
+    <EmbeddedResource Include="frmLoaiSP.resx">
+      <DependentUpon>frmLoaiSP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -181,8 +184,14 @@
     <EmbeddedResource Include="frmDatPhong.resx">
       <DependentUpon>frmDatPhong.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPhong.resx">
-      <DependentUpon>frmPhong.cs</DependentUpon>
+    <EmbeddedResource Include="frmSoLuong.resx">
+      <DependentUpon>frmSoLuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThemPhong.resx">
+      <DependentUpon>frmThemPhong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThemSanPham.resx">
+      <DependentUpon>frmThemSanPham.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmXuatPhieu.resx">
       <DependentUpon>frmXuatPhieu.cs</DependentUpon>
@@ -198,17 +207,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ucChamCong.resx">
-      <DependentUpon>ucChamCong.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ucKhachSan.resx">
-      <DependentUpon>ucKhachSan.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ucNhanVien.resx">
       <DependentUpon>ucNhanVien.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ucPhong.resx">
-      <DependentUpon>ucPhong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucSoDoPhong.resx">
       <DependentUpon>ucSoDoPhong.cs</DependentUpon>
@@ -252,6 +252,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sqlserver.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

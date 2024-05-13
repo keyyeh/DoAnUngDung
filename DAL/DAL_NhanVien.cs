@@ -11,14 +11,26 @@ namespace DAL
     {
         public IQueryable Xem()
         {
-            var nhanVien = from NV in ConectionData.dt.NHANVIENs
-                           select NV;
+            var nhanVien = from nv in ConectionData.dt.NHANVIENs
+                           join cv in ConectionData.dt.CHUCVUs on nv.MACHUCVU equals cv.MACV
+                           select new
+                           {
+                               MANV = nv.MANV,
+                               TEN = nv.HONV + " " +nv.TENNV,
+                               CHUCVU = cv.TENCV,
+                               NGAYSINH = nv.NGAYSINH,
+                               SDT = nv.SDT,
+                               DIACHI = nv.DIACHI,
+                           };
             return nhanVien;
         }
-        public void Them(DTO_NhanVien nv)
+        public int Them(DTO_NhanVien nv)
         {
             try
             {
+                if (nv == null)
+                    throw new ArgumentNullException(nameof(nv), "DTO_DatPhong không được null.");
+
                 NHANVIEN nhanVien = new NHANVIEN
                 {
                     MANV = nv.MaNV,
@@ -31,16 +43,35 @@ namespace DAL
                     SDT = nv.Sdt,
                     DIACHI = nv.DiaChi,
                 };
+                
+
+                if (ConectionData.dt == null)
+                    throw new Exception("Không thể kết nối đến cơ sở dữ liệu.");
+
                 ConectionData.dt.NHANVIENs.InsertOnSubmit(nhanVien);
-            }
-            finally
-            {
                 ConectionData.dt.SubmitChanges();
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                // Ghi log hoặc xử lý lỗi ở đây
+                Console.WriteLine($"Đã xảy ra lỗi: {ex.Message}");
+                return 0; // Hoặc bất kỳ mã lỗi nào bạn muốn trả về
             }
         }
-        public void Sua(DTO_NhanVien nv)
+        public int Sua(DTO_NhanVien nv)
         {
-            var sua = ConectionData.dt.NHANVIENs.Single(nhanVien => nhanVien.MANV == nv.MaNV);
+            // Tìm nhân viên cần sửa
+            var sua = ConectionData.dt.NHANVIENs.SingleOrDefault(nhanVien => nhanVien.MANV == nv.MaNV);
+
+            // Kiểm tra xem nhân viên có tồn tại không
+            if (sua == null)
+            {
+                // Trả về 0 để chỉ ra rằng không tìm thấy nhân viên
+                return 0;
+            }
+
+            // Cập nhật thông tin của nhân viên
             sua.MAKS = nv.MaKS;
             sua.MACHUCVU = nv.MaChucVu;
             sua.HINHANH = nv.Image;
@@ -50,19 +81,61 @@ namespace DAL
             sua.SDT = nv.Sdt;
             sua.DIACHI = nv.DiaChi;
 
-            ConectionData.dt.NHANVIENs.InsertOnSubmit(sua);
+            // Thực hiện việc cập nhật trong cơ sở dữ liệu
             ConectionData.dt.SubmitChanges();
+
+            // Trả về 1 để chỉ ra rằng cập nhật thành công
+            return 1;
         }
-        public void Xoa(string maNV)
+
+        public int Xoa(string maNV)
         {
+            // Tìm tất cả các nhân viên có mã maNV cần xóa
             var xoa = from NV in ConectionData.dt.NHANVIENs
                       where NV.MANV == maNV
                       select NV;
-            foreach (var item in xoa)
+
+            // Kiểm tra xem có bản ghi cần xóa không
+            if (xoa.Any())
             {
-                ConectionData.dt.NHANVIENs.DeleteOnSubmit(item);
+                // Duyệt qua tất cả các nhân viên tìm được và xóa chúng
+                foreach (var item in xoa)
+                {
+                    ConectionData.dt.NHANVIENs.DeleteOnSubmit(item);
+                }
+
+                // Thực hiện lưu thay đổi vào cơ sở dữ liệu
                 ConectionData.dt.SubmitChanges();
+
+                // Trả về 1 để chỉ ra rằng việc xóa đã thành công
+                return 1;
             }
+            else
+            {
+                // Trả về 0 để chỉ ra rằng không có bản ghi nào được xóa
+                return 0;
+            }
+        }
+
+
+        public DTO_NhanVien LayNhanVien(string maNV)
+        {
+            var lay = ConectionData.dt.NHANVIENs
+                .Where(nv => nv.MANV == maNV)
+                .Select(nv => new DTO_NhanVien
+                {
+                    MaNV = nv.MANV,
+                    MaKS = nv.MAKS,
+                    MaChucVu = nv.MACHUCVU,
+                    HoNV = nv.HONV,
+                    TenNV = nv.TENNV,
+                    Sdt = nv.SDT,
+                    DiaChi = nv.DIACHI,
+                    NgaySinh = nv.NGAYSINH.Value,
+                    Image = nv.HINHANH.ToArray()
+                }).FirstOrDefault();
+
+            return lay;
         }
     }
 }

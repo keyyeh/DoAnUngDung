@@ -27,8 +27,11 @@ namespace GUI
         }
         BUS_Tang busTang = new BUS_Tang();
         BUS_Phong busPhong = new BUS_Phong();
+        BUS_KhachHang busKhachHang = new BUS_KhachHang();
         Panel panel;
-        string maKS,maPhong,maTang;
+
+        Label tenKH;
+        string maKS,maPhong,maTang,ma1Phong;
         double gia;
         private void ucText_Load(object sender, EventArgs e)
         {
@@ -58,18 +61,32 @@ namespace GUI
                     Label tenPhong = new Label();
                     tenPhong.Text = item.TenPhong;
                     tenPhong.Dock = DockStyle.Top;
-                    tenPhong.TextAlign = ContentAlignment.MiddleLeft;
+                    tenPhong.TextAlign = ContentAlignment.MiddleCenter;
+                    tenPhong.Font = new Font("Arial", 12);
                     tenPhong.Height = 20;
-                    panel.Controls.Add(tenPhong);
-                    stackPanel.Controls.Add(panel);
+                    tenKH = new Label();
                     if (busPhong.CheckPhong(item.MaPhong))
                     {
+                        DTO_KhachHang kh = busKhachHang.Lay1KhachHang(item.MaKS, item.MaPhong);
                         panel.BackColor = Color.Aqua;
+                        tenKH.Tag = item.MaPhong;
+                        tenKH.ContextMenuStrip = contextMenuStrip2;
+                        tenKH.AutoSize = false;
+                        tenKH.Text = "Tên khách hàng: " + kh.TenKH + "\nSố người: " + item.SucChua;
+                        tenKH.Dock = DockStyle.Fill;
+                        tenKH.TextAlign = ContentAlignment.MiddleLeft;
+                        tenKH.Font = new Font("Arial", 8);
+                        this.tenKH.MouseUp += new MouseEventHandler(this.mouseUp1);
                     }
                     else
                     {
+                        
                         panel.BackColor = Color.LightGreen;
+                        
                     }
+                    panel.Controls.Add(tenPhong);
+                    panel.Controls.Add(tenKH);
+                    stackPanel.Controls.Add(panel);
                 }
                 viTri++;
                 
@@ -88,6 +105,17 @@ namespace GUI
                 maTang = arr[3];
             }
         }
+        private void mouseUp1(object sender, MouseEventArgs e)
+        {
+
+            if (e.Button == MouseButtons.Right)
+            {
+                Label l = sender as Label;
+                string maPhong = l.Tag.ToString();
+                ma1Phong = maPhong;
+            }
+        }
+
         private void nhậnPhòngToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmDatPhong phong = new frmDatPhong(maKS, maPhong,gia);
@@ -97,9 +125,7 @@ namespace GUI
 
         private void đặtPhòngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmXuatPhieu xuatPhieu = new frmXuatPhieu(maPhong);
-            xuatPhieu.StartPosition = FormStartPosition.CenterParent;
-            xuatPhieu.ShowDialog();
+            
         }
 
         private void xóaPhòngToolStripMenuItem_Click(object sender, EventArgs e)
@@ -114,9 +140,23 @@ namespace GUI
             }
         }
 
+        private void sửaThôngTinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCapNhatPhong ph = new frmCapNhatPhong(maKS,maTang,maPhong);
+            ph.StartPosition = FormStartPosition.CenterParent;
+            ph.ShowDialog();
+        }
+
+        private void trảPhòngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmXuatPhieu xuatPhieu = new frmXuatPhieu(ma1Phong);
+            xuatPhieu.StartPosition = FormStartPosition.CenterParent;
+            xuatPhieu.ShowDialog();
+        }
+
         private void thêmPhòngMớiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmPhong phong = new frmPhong(maKS,maTang);
+            frmThemPhong phong = new frmThemPhong(maKS,maTang);
             phong.StartPosition=FormStartPosition.CenterParent;
             phong.ShowDialog();
         }

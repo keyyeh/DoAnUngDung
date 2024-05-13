@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class frmPhong
+    partial class frmThemPhong
     {
         /// <summary>
         /// Required designer variable.
@@ -40,7 +40,7 @@
             this.txtSucChua = new System.Windows.Forms.TextBox();
             this.txtGia = new System.Windows.Forms.TextBox();
             this.btnThem = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCapNhat = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -69,7 +69,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(33, 189);
+            this.label3.Location = new System.Drawing.Point(33, 172);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 19);
             this.label3.TabIndex = 2;
@@ -79,7 +79,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(33, 249);
+            this.label4.Location = new System.Drawing.Point(33, 232);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 19);
             this.label4.TabIndex = 3;
@@ -89,7 +89,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(33, 308);
+            this.label5.Location = new System.Drawing.Point(33, 291);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 19);
             this.label5.TabIndex = 4;
@@ -99,7 +99,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(33, 369);
+            this.label6.Location = new System.Drawing.Point(33, 352);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(88, 19);
             this.label6.TabIndex = 5;
@@ -116,7 +116,7 @@
             // txtTenPhong
             // 
             this.txtTenPhong.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenPhong.Location = new System.Drawing.Point(169, 186);
+            this.txtTenPhong.Location = new System.Drawing.Point(169, 169);
             this.txtTenPhong.Name = "txtTenPhong";
             this.txtTenPhong.Size = new System.Drawing.Size(284, 27);
             this.txtTenPhong.TabIndex = 7;
@@ -124,7 +124,7 @@
             // txtLoaiPhong
             // 
             this.txtLoaiPhong.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLoaiPhong.Location = new System.Drawing.Point(169, 246);
+            this.txtLoaiPhong.Location = new System.Drawing.Point(169, 229);
             this.txtLoaiPhong.Name = "txtLoaiPhong";
             this.txtLoaiPhong.Size = new System.Drawing.Size(284, 27);
             this.txtLoaiPhong.TabIndex = 8;
@@ -132,7 +132,7 @@
             // txtSucChua
             // 
             this.txtSucChua.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSucChua.Location = new System.Drawing.Point(169, 366);
+            this.txtSucChua.Location = new System.Drawing.Point(169, 349);
             this.txtSucChua.Name = "txtSucChua";
             this.txtSucChua.Size = new System.Drawing.Size(284, 27);
             this.txtSucChua.TabIndex = 9;
@@ -140,7 +140,7 @@
             // txtGia
             // 
             this.txtGia.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGia.Location = new System.Drawing.Point(169, 305);
+            this.txtGia.Location = new System.Drawing.Point(169, 288);
             this.txtGia.Name = "txtGia";
             this.txtGia.Size = new System.Drawing.Size(284, 27);
             this.txtGia.TabIndex = 9;
@@ -155,14 +155,16 @@
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
-            // button2
+            // btnCapNhat
             // 
-            this.button2.Location = new System.Drawing.Point(213, 475);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 47);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Cập nhật";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCapNhat.Enabled = false;
+            this.btnCapNhat.Location = new System.Drawing.Point(213, 475);
+            this.btnCapNhat.Name = "btnCapNhat";
+            this.btnCapNhat.Size = new System.Drawing.Size(112, 47);
+            this.btnCapNhat.TabIndex = 11;
+            this.btnCapNhat.Text = "Cập nhật";
+            this.btnCapNhat.UseVisualStyleBackColor = true;
+            this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
             // 
             // button3
             // 
@@ -173,13 +175,13 @@
             this.button3.Text = "Thoát";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // frmPhong
+            // frmThemPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 557);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnCapNhat);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.txtGia);
             this.Controls.Add(this.txtSucChua);
@@ -192,8 +194,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "frmPhong";
+            this.Name = "frmThemPhong";
             this.Text = "frmPhong";
+            this.Load += new System.EventHandler(this.frmPhong_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,7 +216,7 @@
         private System.Windows.Forms.TextBox txtSucChua;
         private System.Windows.Forms.TextBox txtGia;
         private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCapNhat;
         private System.Windows.Forms.Button button3;
     }
 }

@@ -12,6 +12,10 @@ namespace DTO
         private DateTime ngaySinh;
         private byte[] image;
 
+        public DTO_NhanVien()
+        {
+
+        }
         public DTO_NhanVien(string maNV, string maKS, string maChucVu, string hoNV, string tenNV, string sdt, string diaChi, DateTime ngaySinh, byte[] image)
         {
             this.MaNV = maNV;

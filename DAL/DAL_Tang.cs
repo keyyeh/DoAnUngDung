@@ -23,7 +23,12 @@ namespace DAL
             }
             return tang;
         }
-
+        public IQueryable XemPhong()
+        {
+            var xem = ConectionData.dt.TANGs
+                .Select(d => d);
+            return xem;
+        }
         public List<DTO_Phong> CheckTang(string maTang)
         {
             var xem = from t in ConectionData.dt.PHONGs
@@ -45,5 +50,28 @@ namespace DAL
             }
             return phong;
         }
+
+        public string LayTenTang(string maTang)
+        {
+            var tangList = ConectionData.dt.TANGs
+                .Where(d => d.MATANG == maTang)
+                .Select(d => d)
+                .ToList();
+
+            // Kiểm tra xem danh sách có phần tử không
+            if (tangList.Any())
+            {
+                // Lấy giá trị LAU từ phần tử đầu tiên trong danh sách (giả sử chỉ có một phần tử)
+                string tenTang = tangList[0].LAU;
+                return tenTang;
+            }
+            else
+            {
+                // Trả về null nếu không có phần tử nào trong danh sách
+                return null;
+            }
+        }
+
+
     }
 }

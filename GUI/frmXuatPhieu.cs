@@ -21,14 +21,33 @@ namespace GUI
             this.maPhong = maPhong;
         }
         BUS_DatPhong busDatPhong = new BUS_DatPhong();
+        BUS_DatMon busDatMon = new BUS_DatMon();
         private void btnIn_Click(object sender, EventArgs e)
         {
             busDatPhong.Xoa(maPhong);
-            
+            busDatMon.Xoa(maPhong);
         }
 
         private void frmXuatPhieu_Load(object sender, EventArgs e)
         {
+            dgvSP.DataSource = busDatMon.LayDuLieu(maPhong);
+            double tongTien = 0;
+            foreach (DataGridViewRow row in dgvSP.Rows)
+            {
+                // Kiểm tra xem cell và giá trị của cột "Thành tiền" có null không
+                if (row.Cells["Thành tiền"] != null && row.Cells["Thành tiền"].Value != null)
+                {
+                    // Lấy giá trị của cột "Thành tiền" từ dòng hiện tại và chuyển đổi sang kiểu double
+                    double thanhTien;
+                    if (double.TryParse(row.Cells["Thành tiền"].Value.ToString(), out thanhTien))
+                    {
+                        // Nếu chuyển đổi thành công, thêm giá trị vào biến tongTien
+                        tongTien += thanhTien;
+                    }
+                }
+            }
+
+
             IEnumerable<DTO_ThongTinDatPhong> datPhong = busDatPhong.InPhieu(maPhong);
             foreach (var item in datPhong)
             {
@@ -38,8 +57,9 @@ namespace GUI
                 txtSDT.Text = item.Sdt;
                 lbNgayDatPhong.Text = item.NgayDatPhong.ToString();
                 lbNgayTraPhong.Text = item.NgayTraPhong.ToString();
-                lbTongTien.Text = item.TongTien.ToString();
+                lbTongTien.Text = (item.TongTien + tongTien).ToString();
             }
+            
         }
     }
 }

@@ -12,18 +12,30 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmPhong : Form
+    public partial class frmThemPhong : Form
     {
         private string maKS, maTang;
-        public frmPhong(string maKS,string maTang)
+        public frmThemPhong(string maKS,string maTang)
         {
             InitializeComponent();
             this.maKS = maKS;
             this.maTang = maTang;
         }
         BUS_Phong busPhong = new BUS_Phong();
+        BUS_Tang busTang = new BUS_Tang();
 
         DTO_Phong dtoPhong;
+
+        private void frmPhong_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnCapNhat_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnThem_Click(object sender, EventArgs e)
         {
             string maPhong = txtMaPhong.Text;

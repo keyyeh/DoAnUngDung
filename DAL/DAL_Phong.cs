@@ -15,7 +15,22 @@ namespace DAL
                         select P;
             return phong;
         }
+        public int TimViTriPhong(string maMP)
+        {
+            var phong = from p in ConectionData.dt.PHONGs
+                        select p;
 
+            int i = 0;
+            foreach (var phongItem in phong)
+            {
+                if (phongItem.MAPHONG == maMP)
+                {
+                    return i;
+                }
+                i++;
+            }
+            return -1;
+        }
         public bool CheckPhong(string maPhong)
         {
             var check = (from kh in ConectionData.dt.KHACHHANGs
@@ -51,7 +66,6 @@ namespace DAL
         {
             var sua = ConectionData.dt.PHONGs.Single(phong => phong.MAPHONG == p.MaPhong);
 
-            sua.MAKS = p.MaKS;
             sua.MATANG = p.MaTang;
             sua.TENPHONG = p.TenPhong;
             sua.LOAIPHONG = p.LoaiPhong;
@@ -94,10 +108,10 @@ namespace DAL
             return listPhong;
         }
 
-        public DTO_Phong Lay1Phong(string maKS, string maPhong)
+        public DTO_Phong Lay1Phong(string maKS, string maTang,string maPhong)
         {
             var phong = ConectionData.dt.PHONGs
-                .Where(p => p.MAKS == maKS)
+                .Where(p => p.MAKS == maKS && p.MATANG == maTang)
                 .Select(p => new DTO_Phong
                 {
                     MaPhong = p.MAPHONG,

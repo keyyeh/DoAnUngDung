@@ -41,11 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cls_Connect.cs" />
+    <Compile Include="DTO_DatMon.cs" />
     <Compile Include="DTO_DatPhong.cs" />
     <Compile Include="DTO_KhachHang.cs" />
     <Compile Include="DTO_KhachSan.cs" />
+    <Compile Include="DTO_LoaiSP.cs" />
+    <Compile Include="DTO_MucSP.cs" />
     <Compile Include="DTO_NhanVien.cs" />
     <Compile Include="DTO_Phong.cs" />
+    <Compile Include="DTO_SanPham.cs" />
     <Compile Include="DTO_Tang.cs" />
     <Compile Include="DTO_ThongTinDatPhong.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

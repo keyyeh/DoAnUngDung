@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BUS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,20 @@ namespace GUI
         public frmDangNhap()
         {
             InitializeComponent();
+        }
+        BUS_TaiKhoan busTaiKhoan = new BUS_TaiKhoan();
+        private void btnDangNhap_Click(object sender, EventArgs e)
+        {
+            if (busTaiKhoan.CheckTK(txtEmail.Text,txtMatKhau.Text))
+            {     
+                frmMain frmMain = new frmMain(txtEmail.Text);
+                frmMain.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Tai khoan khong ton tai");
+            }
         }
     }
 }
