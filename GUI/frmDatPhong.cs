@@ -18,16 +18,27 @@ namespace GUI
 {
     public partial class frmDatPhong : Form
     {
-        private string maKS = "";
-        private string maPhong = "";
-        private double gia = 0;
-        private string soLuong;
-        public frmDatPhong(string maKS,string maPhong,double gia)
+        private string maNV;
+        private int maPhong;
+        private int maLPhong;
+        private string soLuong,flag;
+        private int maTang;
+        public frmDatPhong(string maNV,int maPhong,int malPhong,int maTang)
         {
             InitializeComponent();
-            this.maKS = maKS;
+            this.maNV = maNV;
             this.maPhong = maPhong;
-            this.gia = gia;          
+            this.maLPhong = malPhong;          
+            this.maTang = maTang;
+        }
+        public frmDatPhong(string maNV, int maPhong, int malPhong, int maTang,string flag)
+        {
+            InitializeComponent();
+            this.maNV = maNV;
+            this.maPhong = maPhong;
+            this.maLPhong = malPhong;
+            this.maTang = maTang;
+            this.flag = flag;
         }
         public frmDatPhong(string soLuong)
         {
@@ -39,14 +50,18 @@ namespace GUI
         BUS_SanPham busSanPham = new BUS_SanPham();
         BUS_LoaiSP busLoai = new BUS_LoaiSP();
         BUS_Phong busPhong = new BUS_Phong();
-        BUS_DatMon busDatMon = new BUS_DatMon();
+        BUS_LoaiPhong busLPhong = new BUS_LoaiPhong();
+        BUS_HinhThuc busHinhThuc = new BUS_HinhThuc();
+        BUS_HoaDon busHoaDon = new BUS_HoaDon();
 
         DTO_KhachHang dtoKhachHang;
         DTO_DatPhong dtoDatPhong;
         int id;
         private void frmPhong_Load(object sender, EventArgs e)
         {
-            cbLoaiHinh.SelectedIndex = 0;
+            cbLoaiHinh.DataSource = busHinhThuc.Xem();
+            cbLoaiHinh.DisplayMember = "TENHT";
+            cbLoaiHinh.ValueMember = "MAHT";
             cbLoai.DataSource = busLoai.Xem();
             cbLoai.DisplayMember = "TENLOAI";
             cbLoai.ValueMember = "MALOAI";
@@ -54,6 +69,11 @@ namespace GUI
             cbPhong.DisplayMember = "TENPHONG";
             cbPhong.ValueMember = "MAPHONG";
             cbPhong.SelectedIndex = busPhong.TimViTriPhong(maPhong);
+            if (flag == "edit")
+            {
+                tabControl1.SelectTab(1);
+            }
+          
         }
 
         private void txtSDT_Leave(object sender, EventArgs e)
@@ -176,15 +196,84 @@ namespace GUI
             DateTime ngayBatDau = dtpDateIn.Value;
             DateTime ngayKetThuc = dtpDateOut.Value;
             TimeSpan khoangCach = ngayKetThuc - ngayBatDau;
-            int soNgay = (int)khoangCach.TotalDays;
-
-            dtoDatPhong = new DTO_DatPhong(maKS, sdt, maPhong, dateTimeIn, dateTimeOut, soNgay * gia);
-
-
-            if (busDatPhong.Them(dtoDatPhong) == 1)
+            int soNgay = (int)khoangCach.TotalDays + 1;
+            string maHD = "HD";
+            
+            Random rd = new Random();
+            int a = rd.Next(00000000,99999999);
+            double gia = busDatPhong.LayGiaPhong(maPhong);
+            
+            if (flag != "edit")
             {
-                MessageBox.Show("Đặt phòng thành công", "Thông báo");
-                // List để lưu trữ các giá trị của cột "colMaSp"
+                busHoaDon.Them(maHD + a, maNV);
+            }
+            dtoDatPhong = new DTO_DatPhong(maHD + a, sdt, maPhong,1, ngayBatDau, ngayKetThuc, soNgay * gia);
+            if (flag != "edit")
+            {
+                if (busDatPhong.Them(dtoDatPhong) == 1)
+                {
+                    MessageBox.Show("Đặt phòng thành công", "Thông báo");
+                    BUS_KhachHang kh = new BUS_KhachHang();
+                    DTO_KhachHang khachHang = kh.Lay1KhachHang(maPhong);
+                    DTO_Phong p = busPhong.Lay1Phong(maTang, maPhong);
+                    //List để lưu trữ các giá trị của cột "colMaSp"
+                    List<int> maSpList = new List<int>();
+
+                    // List để lưu trữ các giá trị của cột "colThanhTien"
+                    List<double> thanhTienList = new List<double>();
+
+                    // Lặp qua từng dòng trong DataGridView
+                    foreach (DataGridViewRow row in dgvMucSP.Rows)
+                    {
+                        // Kiểm tra nếu dòng không phải là dòng mới
+                        if (!row.IsNewRow)
+                        {
+                            // Lấy giá trị của cột "colMaSp" từ dòng hiện tại và thêm vào danh sách
+                            int maSp = int.Parse(row.Cells["colMaSp"].Value.ToString());
+                            maSpList.Add(maSp);
+
+                            // Lấy giá trị của cột "colThanhTien" từ dòng hiện tại và chuyển đổi sang kiểu double
+                            double thanhTien;
+                            if (double.TryParse(row.Cells["Thành tiền"].Value.ToString(), out thanhTien))
+                            {
+                                // Nếu chuyển đổi thành công, thêm giá trị vào danh sách
+                                thanhTienList.Add(thanhTien);
+                            }
+                        }
+                    }
+                    // Đảm bảo rằng cả hai danh sách có cùng độ dài
+                    if (maSpList.Count == thanhTienList.Count)
+                    {
+                        for (int i = 0; i < maSpList.Count; i++)
+                        {
+
+                            int maSp = maSpList[i];
+                            double thanhTien = thanhTienList[i];
+                            dtoDatPhong = new DTO_DatPhong(maHD + a, sdt, maPhong, maSp, dateTimeIn, dateTimeOut, thanhTien);
+                            busDatPhong.Them(dtoDatPhong);
+                        }
+                        double tong = busDatPhong.TongTien(maPhong);
+                        busHoaDon.Sua(maHD + a, tong, khachHang.TenKH, p.TenPhong);
+                    }
+                    else
+                    {
+                        // Xử lý trường hợp nếu độ dài của hai danh sách không bằng nhau
+                        Console.WriteLine("Độ dài của hai danh sách không bằng nhau.");
+                    }
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Dat phong that bai");
+                }
+            }
+            else
+            {
+                DTO_DatPhong datPhong = busDatPhong.Lay1DatPhong(maPhong);
+                BUS_KhachHang kh = new BUS_KhachHang();
+                DTO_KhachHang khachHang = kh.Lay1KhachHang(maPhong);
+                DTO_Phong p = busPhong.Lay1Phong(maTang, maPhong);
+                //List để lưu trữ các giá trị của cột "colMaSp"
                 List<int> maSpList = new List<int>();
 
                 // List để lưu trữ các giá trị của cột "colThanhTien"
@@ -214,12 +303,14 @@ namespace GUI
                 {
                     for (int i = 0; i < maSpList.Count; i++)
                     {
-                        
+
                         int maSp = maSpList[i];
                         double thanhTien = thanhTienList[i];
-                        DTO_DatMon dm = new DTO_DatMon(maSp, cbPhong.SelectedValue.ToString(), thanhTien);
-                        busDatMon.Them(dm);
+                        dtoDatPhong = new DTO_DatPhong(datPhong.MaHD, datPhong.SDT, maPhong, maSp, dateTimeIn, dateTimeOut, thanhTien);
+                        busDatPhong.Them(dtoDatPhong);
                     }
+                    double tong = busDatPhong.TongTien(maPhong);
+                    busHoaDon.Sua(datPhong.MaHD, tong, khachHang.TenKH, p.TenPhong);
                 }
                 else
                 {
@@ -228,21 +319,21 @@ namespace GUI
                 }
                 this.Close();
             }
-            else
+            
+        }
+
+        private void cbLoaiHinh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (flag != "edit")
             {
-                MessageBox.Show("Khách hàng đã đặt phòng");
+                DTO_Phong phong = busPhong.Lay1Phong(maTang, maPhong);
+                cbLoaiHinh.DisplayMember = "TENHT";
+                cbLoaiHinh.ValueMember = "MAHT";
+                int maLoaiHinh = int.Parse(cbLoaiHinh.SelectedValue.ToString());
+                DTO_Phong newPhong = new DTO_Phong(phong.MaPhong, phong.MaKS, phong.MaTang, phong.TenPhong, phong.MaLoaiP, maLoaiHinh, phong.SucChua);
+                busPhong.Sua(newPhong);
             }
-
-        }
-
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
+           
         }
     }
 }

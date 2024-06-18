@@ -8,32 +8,46 @@ namespace DTO
 {
     public class DTO_DatPhong
     {
-        private string maKS, sdt, maPhong;
+        private string maHD, sdt;
         private DateTime ngayDatPhong, ngayTraPhong;
         private double tongTien;
+        private int maSP, maPhong;
 
-        public DTO_DatPhong(string maKS, string sdt, string maPhong, DateTime ngayDatPhong, DateTime ngayTraPhong,double tongTien)
+        public DTO_DatPhong(string maHD, string sdt, int maPhong, int maSP,DateTime ngayDatPhong, DateTime ngayTraPhong,double tongTien)
         {
-            this.MaKS = maKS;
+            this.maHD = maHD;
             this.SDT = sdt;
+            this.MaPhong = maPhong;
+            this.maSP = maSP;
+            this.NgayDatPhong = ngayDatPhong;
+            this.NgayTraPhong = ngayTraPhong;
+            this.TongTien = tongTien;
+        }
+        public DTO_DatPhong(string maHD, string sdt, int maPhong, DateTime ngayDatPhong)
+        {
+            this.MaHD = maHD;
+            this.SDT = sdt;
+            this.MaPhong = maPhong;
+            this.NgayDatPhong = ngayDatPhong;
+        }
+        public DTO_DatPhong(int maPhong,DateTime ngayDatPhong,DateTime ngayTraPhong,double tongTien)
+        { 
             this.MaPhong = maPhong;
             this.NgayDatPhong = ngayDatPhong;
             this.NgayTraPhong = ngayTraPhong;
             this.TongTien = tongTien;
         }
-        public DTO_DatPhong(string maKS, string maKH, string maPhong, DateTime ngayDatPhong)
+        public DTO_DatPhong()
         {
-            this.MaKS = maKS;
-            this.SDT = sdt;
-            this.MaPhong = maPhong;
-            this.NgayDatPhong = ngayDatPhong;
+
         }
 
-        public string MaKS { get => maKS; set => maKS = value; }
         public string SDT { get => sdt; set => sdt = value; }
-        public string MaPhong { get => maPhong; set => maPhong = value; }
+        public int MaPhong { get => maPhong; set => maPhong = value; }
         public DateTime NgayDatPhong { get => ngayDatPhong; set => ngayDatPhong = value; }
         public DateTime NgayTraPhong { get => ngayTraPhong; set => ngayTraPhong = value; }
         public double TongTien { get => tongTien; set => tongTien = value; }
+        public int MaSP { get => maSP; set => maSP = value; }
+        public string MaHD { get => maHD; set => maHD = value; }
     }
 }

@@ -31,8 +31,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnDangKy = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.btnDangNhap = new System.Windows.Forms.Button();
             this.txtMatKhau = new System.Windows.Forms.TextBox();
@@ -66,8 +66,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel2.Controls.Add(this.btnDangKy);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.linkLabel1);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.btnDangNhap);
             this.panel2.Controls.Add(this.txtMatKhau);
@@ -80,6 +80,16 @@
             this.panel2.Size = new System.Drawing.Size(520, 542);
             this.panel2.TabIndex = 1;
             // 
+            // btnDangKy
+            // 
+            this.btnDangKy.Location = new System.Drawing.Point(97, 359);
+            this.btnDangKy.Name = "btnDangKy";
+            this.btnDangKy.Size = new System.Drawing.Size(317, 43);
+            this.btnDangKy.TabIndex = 8;
+            this.btnDangKy.Text = "Đăng Ký";
+            this.btnDangKy.UseVisualStyleBackColor = true;
+            this.btnDangKy.Click += new System.EventHandler(this.btnDangKy_Click);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -89,17 +99,6 @@
             this.label5.Size = new System.Drawing.Size(153, 16);
             this.label5.TabIndex = 7;
             this.label5.Text = "Design by Kiệt and Tring";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.linkLabel1.Location = new System.Drawing.Point(210, 357);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(68, 25);
-            this.linkLabel1.TabIndex = 6;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Admin";
             // 
             // label4
             // 
@@ -127,7 +126,7 @@
             this.txtMatKhau.Name = "txtMatKhau";
             this.txtMatKhau.Size = new System.Drawing.Size(284, 32);
             this.txtMatKhau.TabIndex = 3;
-            this.txtMatKhau.Text = "123456789";
+            this.txtMatKhau.Text = "123456";
             // 
             // txtEmail
             // 
@@ -136,7 +135,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(284, 32);
             this.txtEmail.TabIndex = 2;
-            this.txtEmail.Text = "KS00000001";
+            this.txtEmail.Text = "0359969421";
             // 
             // label3
             // 
@@ -187,9 +186,9 @@
         private System.Windows.Forms.TextBox txtMatKhau;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Button btnDangNhap;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnDangKy;
     }
 }
 

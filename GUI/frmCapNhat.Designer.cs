@@ -52,14 +52,14 @@
             this.txtTen.Location = new System.Drawing.Point(92, 88);
             this.txtTen.Name = "txtTen";
             this.txtTen.Size = new System.Drawing.Size(286, 30);
-            this.txtTen.TabIndex = 1;
+            this.txtTen.TabIndex = 2;
             // 
             // btnOK
             // 
             this.btnOK.Location = new System.Drawing.Point(424, 34);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(92, 33);
-            this.btnOK.TabIndex = 2;
+            this.btnOK.TabIndex = 3;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -80,7 +80,7 @@
             this.txtMa.Location = new System.Drawing.Point(92, 34);
             this.txtMa.Name = "txtMa";
             this.txtMa.Size = new System.Drawing.Size(286, 30);
-            this.txtMa.TabIndex = 5;
+            this.txtMa.TabIndex = 1;
             // 
             // label2
             // 

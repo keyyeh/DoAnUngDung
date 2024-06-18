@@ -14,7 +14,7 @@ namespace BUS
         {
             return chucVu.Xem();
         }
-        public string LayTenCV(string maCV)
+        public string LayTenCV(int maCV)
         {
             return chucVu.LayTenCV(maCV);
         }

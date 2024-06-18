@@ -47,8 +47,6 @@ namespace DAL
             sua.GIOITINH = kh.GioiTinh;
             sua.DIACHI = kh.DiaChi;
             sua.EMAIL = kh.Email;
-
-            ConectionData.dt.KHACHHANGs.InsertOnSubmit(sua);
             ConectionData.dt.SubmitChanges();
         }
         public void Xoa(string sdt)
@@ -79,13 +77,13 @@ namespace DAL
             return lay;
             
         }
-        public DTO_KhachHang Lay1KhachHang(string maKS,string maPhong)
-        {
+        public DTO_KhachHang Lay1KhachHang(int maPhong)
+        {   
             var khachHang = (from kh in ConectionData.dt.KHACHHANGs
-                            join dp in ConectionData.dt.DATPHONGs on kh.SDT equals dp.SDT
-                            join p in ConectionData.dt.PHONGs on dp.MAPHONG equals p.MAPHONG
-                            where dp.MAKS == maKS && p.MAPHONG == maPhong
-                            select new
+                             join dp in ConectionData.dt.DATPHONGs on kh.SDT equals dp.SDT
+                             join p in ConectionData.dt.PHONGs on dp.MAPHONG equals p.MAPHONG
+                             where p.MAPHONG == maPhong
+                             select new
                             {
                                 TENKH = kh.TENKH,
                                 CCCD = kh.CMND,

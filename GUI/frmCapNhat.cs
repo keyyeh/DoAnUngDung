@@ -14,7 +14,7 @@ namespace GUI
 {
     public partial class frmCapNhat : Form
     {
-        string flag,id;
+        private string flag,id;
         public frmCapNhat(string flag)
         {
             InitializeComponent();

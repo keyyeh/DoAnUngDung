@@ -15,7 +15,7 @@ namespace DAL
                         select P;
             return phong;
         }
-        public int TimViTriPhong(string maMP)
+        public int TimViTriPhong(int maMP)
         {
             var phong = from p in ConectionData.dt.PHONGs
                         select p;
@@ -31,12 +31,12 @@ namespace DAL
             }
             return -1;
         }
-        public bool CheckPhong(string maPhong)
+        public bool CheckPhong(int maPhong)
         {
             var check = (from kh in ConectionData.dt.KHACHHANGs
-                        join dp in ConectionData.dt.DATPHONGs on kh.SDT equals dp.SDT
-                        where dp.MAPHONG == maPhong
-                        select kh).Any();
+                         join dp in ConectionData.dt.DATPHONGs on kh.SDT equals dp.SDT
+                         where dp.MAPHONG == maPhong
+                         select kh).Any();
             return check;
         }
 
@@ -50,8 +50,8 @@ namespace DAL
                     MAKS = p.MaKS,
                     MATANG = p.MaTang,
                     TENPHONG = p.TenPhong,
-                    LOAIPHONG = p.LoaiPhong,
-                    GIA = p.Gia,
+                    MALOAIP = p.MaLoaiP,
+                    MAHT = p.MaHT,
                     SUCCHUA = p.SucChua,
                 };
                 ConectionData.dt.PHONGs.InsertOnSubmit(phong);
@@ -66,17 +66,16 @@ namespace DAL
         {
             var sua = ConectionData.dt.PHONGs.Single(phong => phong.MAPHONG == p.MaPhong);
 
+            sua.MAKS = p.MaKS;
             sua.MATANG = p.MaTang;
             sua.TENPHONG = p.TenPhong;
-            sua.LOAIPHONG = p.LoaiPhong;
-            sua.GIA = p.Gia;
+            sua.MALOAIP = p.MaLoaiP;
+            sua.MAHT = p.MaHT;
             sua.SUCCHUA = p.SucChua;
-
-            ConectionData.dt.PHONGs.InsertOnSubmit(sua);
             ConectionData.dt.SubmitChanges();
             return 1;
         }
-        public int Xoa(string maPhong)
+        public int Xoa(int maPhong)
         {
             var xoa = from p in ConectionData.dt.PHONGs
                       where p.MAPHONG == maPhong
@@ -100,26 +99,26 @@ namespace DAL
                 values.MaKS = item.MAKS;
                 values.MaTang = item.MATANG;
                 values.TenPhong = item.TENPHONG;
-                values.LoaiPhong = item.LOAIPHONG;
-                values.Gia = item.GIA;
+                values.MaLoaiP = item.MALOAIP;
+                values.MaHT = item.MAHT;
                 values.SucChua = item.SUCCHUA;
                 listPhong.Add(values);
             }
             return listPhong;
         }
 
-        public DTO_Phong Lay1Phong(string maKS, string maTang,string maPhong)
+        public DTO_Phong Lay1Phong(int maTang,int maPhong)
         {
             var phong = ConectionData.dt.PHONGs
-                .Where(p => p.MAKS == maKS && p.MATANG == maTang)
+                .Where(p => p.MATANG == maTang)
                 .Select(p => new DTO_Phong
                 {
                     MaPhong = p.MAPHONG,
                     MaKS = p.MAKS,
                     MaTang = p.MATANG,
                     TenPhong = p.TENPHONG,
-                    LoaiPhong = p.LOAIPHONG,
-                    Gia = p.GIA,
+                    MaLoaiP = p.MALOAIP,
+                    MaHT = p.MAHT,
                     SucChua = p.SUCCHUA
                 });
             List<DTO_Phong> phongs = phong.ToList();
@@ -132,7 +131,5 @@ namespace DAL
             }
             return null;
         }
-
-
     }
 }

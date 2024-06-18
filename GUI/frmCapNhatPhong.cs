@@ -33,15 +33,15 @@ namespace GUI
             int sucChua = int.Parse(txtSucChua.Text);
             string maTang = cbTang.SelectedValue.ToString();
 
-            DTO_Phong phong = new DTO_Phong(maPhong,maKS,maTang,tenPhong,loaiPhong,gia,sucChua);
-            if (busPhong.Sua(phong) > 0)
-            {
-                MessageBox.Show("Sửa thành công");
-            }
-            else
-            {
-                MessageBox.Show("Sửa thất bại");
-            }
+            //DTO_Phong phong = new DTO_Phong(txtMaPhong.Text,maKS,maTang,tenPhong,loaiPhong,gia,sucChua);
+            //if (busPhong.Sua(phong) > 0)
+            //{
+            //    MessageBox.Show("Sửa thành công");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Sửa thất bại");
+            //}
         }
 
         private void frmCapNhatPhong_Load(object sender, EventArgs e)
@@ -50,13 +50,13 @@ namespace GUI
             cbTang.DisplayMember = "LAU";
             cbTang.ValueMember = "MATANG";
 
-            DTO_Phong phong = busPhong.Lay1Phong(maKS, maTang, maPhong);
-            txtMaPhong.Text = phong.MaPhong;
-            cbTang.Text = busTang.LayTenTang(phong.MaTang);
-            txtTenPhong.Text = phong.TenPhong;
-            txtLoaiPhong.Text = phong.LoaiPhong;
-            txtGia.Text = phong.Gia.ToString();
-            txtSucChua.Text = phong.SucChua.ToString();
+            //DTO_Phong phong = busPhong.Lay1Phong(maKS, maTang, maPhong);
+            //txtMaPhong.Text = phong.MaPhong;
+            //cbTang.Text = busTang.LayTenTang(phong.MaTang);
+            //txtTenPhong.Text = phong.TenPhong;
+            //txtLoaiPhong.Text = phong.LoaiPhong;
+            //txtGia.Text = phong.Gia.ToString();
+            //txtSucChua.Text = phong.SucChua.ToString();
         }
     }
 }

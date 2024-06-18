@@ -14,7 +14,7 @@ namespace DAL
                 .Select(cv => cv);
             return xem;
         }
-        public string LayTenCV(string maCV)
+        public string LayTenCV(int maCV)
         {
             var tangList = ConectionData.dt.CHUCVUs
                 .Where(d => d.MACV == maCV)

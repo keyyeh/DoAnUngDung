@@ -14,5 +14,9 @@ namespace BUS
         {
             return taiKhoan.CheckTK(tk,mk);
         }
+        public bool TaoTK(string tk, string mk)
+        {
+            return taiKhoan.TaoTK(tk,mk);
+        }
     }
 }

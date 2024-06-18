@@ -20,9 +20,19 @@ namespace GUI
 {
     public partial class ucText : DevExpress.XtraEditors.XtraUserControl
     {
-        public ucText()
+        private int malp;
+        private string maNV;
+        public ucText(int maLp)
         {
             InitializeComponent();
+            this.malp = maLp;
+
+        }
+        public ucText(string maNV, int maLp)
+        {
+            InitializeComponent();
+            this.maNV = maNV;
+            this.malp = maLp;
 
         }
         BUS_Tang busTang = new BUS_Tang();
@@ -30,69 +40,78 @@ namespace GUI
         BUS_KhachHang busKhachHang = new BUS_KhachHang();
         Panel panel;
 
-        Label tenKH;
-        string maKS,maPhong,maTang,ma1Phong;
-        double gia;
+        Label label,tenKH;
+        string maKS,sdt;
+        int maLPhong, maPhong, maTang;
         private void ucText_Load(object sender, EventArgs e)
         {
 
             List<DTO_Tang> tang = busTang.Xem();
-            int viTri = 0;
-
-            var lables = tablePanel1.Controls.OfType<Label>();
-            var stackPanels = tablePanel1.Controls.OfType<StackPanel>();
-            
-            foreach (var lable in lables)
+            foreach (var item in tang)
             {
-                DTO_Tang dtoTang = tang[viTri];
-                lable.Text = dtoTang.Lau;
-                StackPanel stackPanel = stackPanels.ElementAtOrDefault(viTri);
+                StackPanel stackPanel = new StackPanel();
                 stackPanel.AutoScroll = true;
-                List<DTO_Phong> phong = busTang.CheckTang(dtoTang.MaTang);
-                foreach (var item in phong)
+                stackPanel.Width = flowLayoutPanel1.Width;
+                stackPanel.Height = 120;
+                
+                Label lbTenLau = new Label();
+                lbTenLau.Text = item.Lau;
+                lbTenLau.Height = 120;
+                lbTenLau.Width = 50;
+                lbTenLau.TextAlign = ContentAlignment.MiddleCenter;
+                flowLayoutPanel1.Controls.Add(lbTenLau);
+                flowLayoutPanel1.Controls.Add(stackPanel);
+                List<DTO_Phong> phongs = busTang.CheckTang(item.Id,malp);
+                foreach (var phong in phongs)
                 {
-                    string[] arr = new string[] {item.MaKS,item.MaPhong,item.Gia.ToString(),dtoTang.MaTang};
+                    string[] arr = new string[] { phong.MaKS, phong.MaPhong.ToString(), item.Id.ToString(),phong.MaLoaiP.ToString()};
                     panel = new Panel();
                     panel.Width = 200;
                     panel.Height = 100;
-                    panel.Tag = arr;
                     panel.ContextMenuStrip = contextMenuStrip1;
-                    this.panel.MouseUp += new MouseEventHandler(this.mouseUp);
-                    Label tenPhong = new Label();
-                    tenPhong.Text = item.TenPhong;
-                    tenPhong.Dock = DockStyle.Top;
-                    tenPhong.TextAlign = ContentAlignment.MiddleCenter;
-                    tenPhong.Font = new Font("Arial", 12);
-                    tenPhong.Height = 20;
-                    tenKH = new Label();
-                    if (busPhong.CheckPhong(item.MaPhong))
+                    panel.Tag = arr;
+                    this.panel.MouseUp += new MouseEventHandler(this.mouseUpPannel);
+                    stackPanel.Controls.Add(panel);
+
+                    label = new Label();
+                    label.Dock = DockStyle.Top;
+                    label.Height = 20;
+                    label.Text = phong.TenPhong;
+                    label.TextAlign = ContentAlignment.MiddleCenter;
+                    label.Font = new Font("Arial", 12);
+                    label.ContextMenuStrip = contextMenuStrip1;
+                    label.Tag = arr;
+                    this.label.MouseUp += new MouseEventHandler(this.mouseUpLabel);
+                    panel.Controls.Add(label);
+                    panel.BackColor = Color.LightGreen;
+                    if (busPhong.CheckPhong(phong.MaPhong))
                     {
-                        DTO_KhachHang kh = busKhachHang.Lay1KhachHang(item.MaKS, item.MaPhong);
+                        DTO_KhachHang kh = busKhachHang.Lay1KhachHang(phong.MaPhong);
+                        string[] arrA = new string[] { phong.MaKS, phong.MaPhong.ToString(), item.Id.ToString(), phong.MaLoaiP.ToString(), kh.Sdt};
                         panel.BackColor = Color.Aqua;
-                        tenKH.Tag = item.MaPhong;
+                        tenKH = new Label();
+                        tenKH.Tag = arrA;
                         tenKH.ContextMenuStrip = contextMenuStrip2;
                         tenKH.AutoSize = false;
-                        tenKH.Text = "Tên khách hàng: " + kh.TenKH + "\nSố người: " + item.SucChua;
+                        tenKH.Text = "Tên khách hàng: " + kh.TenKH + "\nSố người: " + phong.SucChua;
                         tenKH.Dock = DockStyle.Fill;
                         tenKH.TextAlign = ContentAlignment.MiddleLeft;
                         tenKH.Font = new Font("Arial", 8);
-                        this.tenKH.MouseUp += new MouseEventHandler(this.mouseUp1);
+                        this.tenKH.MouseUp += new MouseEventHandler(this.mouseUpLabel1);
+                        panel.Controls.Add(tenKH);
                     }
                     else
                     {
-                        
+
                         panel.BackColor = Color.LightGreen;
-                        
+
                     }
-                    panel.Controls.Add(tenPhong);
-                    panel.Controls.Add(tenKH);
-                    stackPanel.Controls.Add(panel);
+                    
                 }
-                viTri++;
-                
+
             }
         }
-        private void mouseUp(object sender, MouseEventArgs e)
+        private void mouseUpPannel(object sender, MouseEventArgs e)
         {
             
             if (e.Button == MouseButtons.Right)
@@ -100,32 +119,51 @@ namespace GUI
                 Panel p = sender as Panel;
                 string[] arr = (string[])p.Tag;
                 maKS = arr[0];
-                maPhong = arr[1];
-                gia = double.Parse(arr[2]);
-                maTang = arr[3];
+                maPhong = int.Parse(arr[1]);
+                maTang = int.Parse(arr[2]);
+                maLPhong = int.Parse(arr[3]);
             }
         }
-        private void mouseUp1(object sender, MouseEventArgs e)
+        private void mouseUpLabel(object sender, MouseEventArgs e)
         {
 
             if (e.Button == MouseButtons.Right)
             {
                 Label l = sender as Label;
-                string maPhong = l.Tag.ToString();
-                ma1Phong = maPhong;
+                string[] arr = (string[])l.Tag;
+                maKS = arr[0];
+                maPhong = int.Parse(arr[1]);
+                maTang = int.Parse(arr[2]);
+                maLPhong = int.Parse(arr[3]);
+            }
+        }
+        private void mouseUpLabel1(object sender, MouseEventArgs e)
+        {
+
+            if (e.Button == MouseButtons.Right)
+            {
+                Label l = sender as Label;
+                string[] arr = (string[])l.Tag;
+                maKS = arr[0];
+                maPhong = int.Parse(arr[1]);
+                maTang = int.Parse(arr[2]);
+                maLPhong = int.Parse(arr[3]);
+                sdt = arr[4];
             }
         }
 
         private void nhậnPhòngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmDatPhong phong = new frmDatPhong(maKS, maPhong,gia);
-            phong.StartPosition = FormStartPosition.CenterParent;
+            frmDatPhong phong = new frmDatPhong(maNV, maPhong, maLPhong,maTang);
+            phong.StartPosition = FormStartPosition.CenterScreen;
             phong.ShowDialog();
         }
 
-        private void đặtPhòngToolStripMenuItem_Click(object sender, EventArgs e)
+        private void thêmSảnPhẩmVàDịchVụToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            frmDatPhong datPhong = new frmDatPhong(maNV,maPhong, maLPhong, maTang,"edit");
+            datPhong.StartPosition = FormStartPosition.CenterScreen;
+            datPhong.ShowDialog();
         }
 
         private void xóaPhòngToolStripMenuItem_Click(object sender, EventArgs e)
@@ -142,28 +180,23 @@ namespace GUI
 
         private void sửaThôngTinToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmCapNhatPhong ph = new frmCapNhatPhong(maKS,maTang,maPhong);
+            frmThemPhong ph = new frmThemPhong(maKS,maTang,maPhong,"updatePhong");
             ph.StartPosition = FormStartPosition.CenterParent;
             ph.ShowDialog();
         }
 
         private void trảPhòngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmXuatPhieu xuatPhieu = new frmXuatPhieu(ma1Phong);
+            frmXuatPhieu xuatPhieu = new frmXuatPhieu(maPhong,maKS,sdt,maTang);
             xuatPhieu.StartPosition = FormStartPosition.CenterParent;
             xuatPhieu.ShowDialog();
         }
 
         private void thêmPhòngMớiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmThemPhong phong = new frmThemPhong(maKS,maTang);
+            frmThemPhong phong = new frmThemPhong(maKS,maTang,maPhong,"editPhong");
             phong.StartPosition=FormStartPosition.CenterParent;
             phong.ShowDialog();
-        }
-
-        private void panel1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

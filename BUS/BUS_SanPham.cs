@@ -16,6 +16,10 @@ namespace BUS
         {
             return sanPham.Xem(maLoai);
         }
+        public IQueryable XemDuLieu()
+        {
+            return sanPham.XemDuLieu();
+        }
         public int Them(DTO_SanPham sp)
         {
             return sanPham.Them(sp);
@@ -28,9 +32,13 @@ namespace BUS
         {
             return sanPham.Xoa(maSP);
         }
-        public DTO_SanPham LayDuLieu(int  maSP)
+        public DTO_SanPham LayDuLieu(int maSP)
         {
             return sanPham.LayDuLieu(maSP);
+        }
+        public DataTable InSanPham(int maLoai)
+        {
+            return sanPham.InSanPham(maLoai);
         }
     }
 }

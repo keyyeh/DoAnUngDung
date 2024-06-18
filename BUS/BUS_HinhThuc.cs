@@ -7,18 +7,16 @@ using System.Threading.Tasks;
 
 namespace BUS
 {
-    public class BUS_ThongTinDatPhong
+    public class BUS_HinhThuc
     {
-        DAL_ThongTinDatPhong datPhong = new DAL_ThongTinDatPhong();
-
+        DAL_HinhThuc hinhThuc = new DAL_HinhThuc();
         public IQueryable Xem()
         {
-            return datPhong.Xem();
+            return hinhThuc.Xem();
         }
-
-        public int Them(DTO_ThongTinDatPhong dp)
+        public double LayGiaHT(int maHT)
         {
-            return datPhong.Them(dp);
+            return hinhThuc.LayGiaHT(maHT);
         }
     }
 }

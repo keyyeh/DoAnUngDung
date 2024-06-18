@@ -8,19 +8,25 @@ namespace DTO
 {
     public class DTO_Tang
     {
-        private string maTang, lau;
+        private int id;
+        private string lau;
 
         public DTO_Tang()
         {
 
         }
-        public DTO_Tang(string maTang, string lau)
+        public DTO_Tang(string lau)
         {
-            this.maTang = maTang;
             this.lau = lau;
         }
 
-        public string MaTang { get => maTang; set => maTang = value; }
+        public DTO_Tang(int id, string lau)
+        {
+            this.id = id;
+            this.lau = lau;
+        }
+
         public string Lau { get => lau; set => lau = value; }
+        public int Id { get => id; set => id = value; }
     }
 }

@@ -16,7 +16,7 @@ namespace DAL
                            select new
                            {
                                MANV = nv.MANV,
-                               TEN = nv.HONV + " " +nv.TENNV,
+                               TEN = nv.HONV + " " + nv.TENNV,
                                CHUCVU = cv.TENCV,
                                NGAYSINH = nv.NGAYSINH,
                                SDT = nv.SDT,
@@ -43,7 +43,7 @@ namespace DAL
                     SDT = nv.Sdt,
                     DIACHI = nv.DiaChi,
                 };
-                
+
 
                 if (ConectionData.dt == null)
                     throw new Exception("Không thể kết nối đến cơ sở dữ liệu.");
@@ -82,6 +82,7 @@ namespace DAL
             sua.DIACHI = nv.DiaChi;
 
             // Thực hiện việc cập nhật trong cơ sở dữ liệu
+
             ConectionData.dt.SubmitChanges();
 
             // Trả về 1 để chỉ ra rằng cập nhật thành công
@@ -120,22 +121,44 @@ namespace DAL
 
         public DTO_NhanVien LayNhanVien(string maNV)
         {
-            var lay = ConectionData.dt.NHANVIENs
+            // Truy vấn cơ sở dữ liệu để lấy thông tin nhân viên, không chuyển đổi HINHANH ở đây
+            var nhanVien = ConectionData.dt.NHANVIENs
                 .Where(nv => nv.MANV == maNV)
-                .Select(nv => new DTO_NhanVien
+                .Select(nv => new
                 {
-                    MaNV = nv.MANV,
-                    MaKS = nv.MAKS,
-                    MaChucVu = nv.MACHUCVU,
-                    HoNV = nv.HONV,
-                    TenNV = nv.TENNV,
-                    Sdt = nv.SDT,
-                    DiaChi = nv.DIACHI,
-                    NgaySinh = nv.NGAYSINH.Value,
-                    Image = nv.HINHANH.ToArray()
-                }).FirstOrDefault();
+                    nv.MANV,
+                    nv.MAKS,
+                    nv.MACHUCVU,
+                    nv.HONV,
+                    nv.TENNV,
+                    nv.SDT,
+                    nv.DIACHI,
+                    nv.NGAYSINH,
+                    nv.HINHANH
+                })
+                .FirstOrDefault();
 
-            return lay;
+            if (nhanVien == null)
+            {
+                return null; // hoặc xử lý khi không tìm thấy nhân viên
+            }
+
+            // Chuyển đổi dữ liệu sang DTO_NhanVien
+            var dtoNhanVien = new DTO_NhanVien
+            {
+                MaNV = nhanVien.MANV,
+                MaKS = nhanVien.MAKS,
+                MaChucVu = nhanVien.MACHUCVU,
+                HoNV = nhanVien.HONV,
+                TenNV = nhanVien.TENNV,
+                Sdt = nhanVien.SDT ?? "",
+                DiaChi = nhanVien.DIACHI ?? "",
+                NgaySinh = nhanVien.NGAYSINH ?? DateTime.Now,
+                Image = nhanVien.HINHANH?.ToArray() ?? new byte[0] // Chuyển đổi HINHANH sau khi đã tải dữ liệu
+            };
+
+            return dtoNhanVien;
         }
+
     }
 }

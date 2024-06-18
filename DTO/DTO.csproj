@@ -44,8 +44,10 @@
     <Compile Include="cls_Connect.cs" />
     <Compile Include="DTO_DatMon.cs" />
     <Compile Include="DTO_DatPhong.cs" />
+    <Compile Include="DTO_HinhThuc.cs" />
     <Compile Include="DTO_KhachHang.cs" />
     <Compile Include="DTO_KhachSan.cs" />
+    <Compile Include="DTO_LoaiPhong.cs" />
     <Compile Include="DTO_LoaiSP.cs" />
     <Compile Include="DTO_MucSP.cs" />
     <Compile Include="DTO_NhanVien.cs" />

@@ -42,9 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BUS_ChucVu.cs" />
-    <Compile Include="BUS_DatMon.cs" />
     <Compile Include="BUS_DatPhong.cs" />
+    <Compile Include="BUS_HinhThuc.cs" />
+    <Compile Include="BUS_HoaDon.cs" />
     <Compile Include="BUS_KhachHang.cs" />
+    <Compile Include="BUS_LoaiPhong.cs" />
     <Compile Include="BUS_LoaiSP.cs" />
     <Compile Include="BUS_NhanVien.cs" />
     <Compile Include="BUS_Phong.cs" />
@@ -52,7 +54,6 @@
     <Compile Include="BUS_SanPham.cs" />
     <Compile Include="BUS_TaiKhoan.cs" />
     <Compile Include="BUS_Tang.cs" />
-    <Compile Include="BUS_ThongTinDatPhong.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

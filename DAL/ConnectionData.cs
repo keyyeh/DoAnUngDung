@@ -10,7 +10,7 @@ namespace DAL
 {
     public class ConectionData
     {
-        public static DataKhachSanDataContext dt = new DataKhachSanDataContext();
+        public static DataKhachSanDataContext dt = new DataKhachSanDataContext(cls_Connect.SqlConnectionWindowsAuthentication());
         
     }
-}
+}   

@@ -20,7 +20,7 @@ namespace GUI
         BUS_LoaiSP busLoai = new BUS_LoaiSP();
         BUS_SanPham busSanPham = new BUS_SanPham();
 
-        int id;
+        int id,maSanPham;
         private void frmLoaiSP_Load(object sender, EventArgs e)
         {
             cbLoai.DataSource = busLoai.Xem();
@@ -80,6 +80,21 @@ namespace GUI
             frmThemSanPham.StartPosition = FormStartPosition.CenterScreen;
             frmThemSanPham.ShowDialog();
             frmLoaiSP_Load(sender, e);
+        }
+
+        private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            busSanPham.Xoa(maSanPham);
+        }
+
+        private void dgvSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int viTri = e.RowIndex;
+            if (viTri >= 0)
+            {
+                maSanPham = int.Parse(dgvSanPham.SelectedColumns[1].ToString());
+            }
         }
     }
 }

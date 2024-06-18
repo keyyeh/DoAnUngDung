@@ -80,6 +80,24 @@
       <DependentUpon>crpInPhieuXuat.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="crpInSanPham.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpInSanPham.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="crpNhanVien.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpNhanVien.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="crpThongKe.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpThongKe.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DataHoaDon.cs">
       <DependentUpon>DataHoaDon.xsd</DependentUpon>
     </Compile>
@@ -100,11 +118,53 @@
     <Compile Include="frmCapNhatPhong.Designer.cs">
       <DependentUpon>frmCapNhatPhong.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCapNhatTang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCapNhatTang.Designer.cs">
+      <DependentUpon>frmCapNhatTang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmConnect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConnect.Designer.cs">
+      <DependentUpon>frmConnect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDangKy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDangKy.Designer.cs">
+      <DependentUpon>frmDangKy.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmDangNhap.Designer.cs">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInHoaDon.Designer.cs">
+      <DependentUpon>frmInHoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInNhanVien.Designer.cs">
+      <DependentUpon>frmInNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInSanPham.Designer.cs">
+      <DependentUpon>frmInSanPham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInThongKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInThongKe.Designer.cs">
+      <DependentUpon>frmInThongKe.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLoaiSP.cs">
       <SubType>Form</SubType>
@@ -142,6 +202,12 @@
     <Compile Include="frmThemSanPham.Designer.cs">
       <DependentUpon>frmThemSanPham.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmThemTang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemTang.Designer.cs">
+      <DependentUpon>frmThemTang.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmXuatPhieu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +216,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ucDoanhThu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucDoanhThu.Designer.cs">
+      <DependentUpon>ucDoanhThu.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucNhanVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -166,14 +238,47 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crpInPhieuXuat.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="crpInSanPham.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpInSanPham.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="crpNhanVien.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpNhanVien.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="crpThongKe.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpThongKe.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCapNhat.resx">
       <DependentUpon>frmCapNhat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCapNhatPhong.resx">
       <DependentUpon>frmCapNhatPhong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCapNhatTang.resx">
+      <DependentUpon>frmCapNhatTang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConnect.resx">
+      <DependentUpon>frmConnect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDangKy.resx">
+      <DependentUpon>frmDangKy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInHoaDon.resx">
+      <DependentUpon>frmInHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInNhanVien.resx">
+      <DependentUpon>frmInNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInSanPham.resx">
+      <DependentUpon>frmInSanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInThongKe.resx">
+      <DependentUpon>frmInThongKe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLoaiSP.resx">
       <DependentUpon>frmLoaiSP.cs</DependentUpon>
@@ -193,6 +298,9 @@
     <EmbeddedResource Include="frmThemSanPham.resx">
       <DependentUpon>frmThemSanPham.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmThemTang.resx">
+      <DependentUpon>frmThemTang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmXuatPhieu.resx">
       <DependentUpon>frmXuatPhieu.cs</DependentUpon>
     </EmbeddedResource>
@@ -207,6 +315,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ucDoanhThu.resx">
+      <DependentUpon>ucDoanhThu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucNhanVien.resx">
       <DependentUpon>ucNhanVien.cs</DependentUpon>
     </EmbeddedResource>

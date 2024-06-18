@@ -16,8 +16,8 @@ namespace DAL
                 .Where(sp => sp.MALOAI == maLoai)
                 .Select(sp => sp).ToList();
             DataTable dt = new DataTable();
-            dt.Columns.Add("maSP",typeof(int));
-            dt.Columns.Add("tenSP",typeof (string));
+            dt.Columns.Add("maSP", typeof(int));
+            dt.Columns.Add("tenSP", typeof(string));
             dt.Columns.Add("maLoai", typeof(int));
             dt.Columns.Add("gia", typeof(double));
             dt.Columns.Add("donVi", typeof(string));
@@ -27,6 +27,12 @@ namespace DAL
                 dt.Rows.Add(item.MASP, item.TENSP, item.MALOAI, item.GIA, item.DONVI);
             }
             return dt;
+        }
+        public IQueryable XemDuLieu()
+        {
+            var xem = ConectionData.dt.LOAISPs
+                .Select(sp => sp);
+            return xem;
         }
         public int Them(DTO_SanPham sp)
         {
@@ -110,6 +116,33 @@ namespace DAL
                     DonVi = l.DONVI,
                 }).FirstOrDefault();
             return lay;
+        }
+        public DataTable InSanPham(int maLoai)
+        {
+            var inL = ConectionData.dt.SANPHAMs
+                .Join(ConectionData.dt.LOAISPs,
+                sp =>  sp.MALOAI,
+                l => l.MALOAI,
+                (sp,l) => new
+                {
+                    TenSP = sp.TENSP,
+                    TenLoai = l.TENLOAI,
+                    Gia = sp.GIA,
+                    DonVi = sp.DONVI,
+                    l
+                }).Where(loai => loai.l.MALOAI == maLoai)
+                .ToList();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("TenSP", typeof(string));
+            dt.Columns.Add("TenLoai", typeof(string));
+            dt.Columns.Add("Gia", typeof(double));
+            dt.Columns.Add("DonVi", typeof(string));
+
+            foreach (var l in inL)
+            {
+                dt.Rows.Add(l.TenSP,l.TenLoai,l.Gia,l.DonVi);
+            }
+            return dt;
         }
     }
 }

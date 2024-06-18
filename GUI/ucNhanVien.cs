@@ -47,7 +47,7 @@ namespace GUI
             string ten = txtTen.Text;
             string sdt = txtSDT.Text;
             DateTime ngaySinh = dtpNgaySinh.Value;
-            string chucVu = cbChucVu.SelectedValue.ToString();
+            int chucVu = Convert.ToInt32(cbChucVu.SelectedValue);
             string diaChi = rtbDiaChi.Text;
             byte[] img = imageToByteArray(pictureBox1.Image);
 
@@ -87,16 +87,19 @@ namespace GUI
                 txtMaNV.Text = nv.MaNV;
                 txtHo.Text = nv.HoNV;
                 txtTen.Text = nv.TenNV;
-                dtpNgaySinh.Value = nv.NgaySinh;
                 txtSDT.Text = nv.Sdt;
-                // Tạo một MemoryStream từ dữ liệu byte
-                using (MemoryStream ms = new MemoryStream(nv.Image))
+                if (nv.Image.Length > 0)
                 {
-                    // Sử dụng phương thức FromStream của lớp Image để tạo một đối tượng hình ảnh từ MemoryStream
-                    Image image = Image.FromStream(ms);
+                    //Tạo một MemoryStream từ dữ liệu byte
+                    using (MemoryStream ms = new MemoryStream(nv.Image))
+                    {
+                        // Sử dụng phương thức FromStream của lớp Image để tạo một đối tượng hình ảnh từ MemoryStream
+                        Image image = Image.FromStream(ms);
 
-                    // Đặt hình ảnh vào pictureBox1
-                    pictureBox1.Image = image;
+                        // Đặt hình ảnh vào pictureBox1
+                        pictureBox1.Image = image;
+                    }
+                    dtpNgaySinh.Value = nv.NgaySinh;
                 }
                 rtbDiaChi.Text = nv.DiaChi;
                 cbChucVu.Text = busChucVu.LayTenCV(nv.MaChucVu);
@@ -110,7 +113,7 @@ namespace GUI
             string ten = txtTen.Text;
             string sdt = txtSDT.Text;
             DateTime ngaySinh = dtpNgaySinh.Value;
-            string chucVu = cbChucVu.SelectedValue.ToString();
+            int chucVu = Convert.ToInt32(cbChucVu.SelectedValue);
             string diaChi = rtbDiaChi.Text;
             byte[] img = imageToByteArray(pictureBox1.Image);
 

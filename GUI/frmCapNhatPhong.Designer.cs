@@ -194,7 +194,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(534, 71);
             this.label1.TabIndex = 15;
-            this.label1.Text = "Thêm phòng";
+            this.label1.Text = "Cập nhật phòng";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmCapNhatPhong

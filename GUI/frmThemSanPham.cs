@@ -55,7 +55,7 @@ namespace GUI
                 {
                     MessageBox.Show("Them that bai");
                 }
-                
+
                 this.Close();
             }
             if (flag == "Sua")

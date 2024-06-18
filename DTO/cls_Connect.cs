@@ -9,23 +9,23 @@ namespace DTO
 {
     public class cls_Connect
     {
-        string dataSource, database, userName, passWord;
-        public string DataSource
+        static string dataSource, database, userName, passWord;
+        public static string DataSource
         {
             get { return dataSource; }
             set { dataSource = value; }
         }
-        public string Database
+        public static string Database
         {
             get { return database; }
             set { database = value; }
         }
-        public string UserName
+        public static string UserName
         {
             get { return userName; }
             set { userName = value; }
         }
-        public string PassWord
+        public static string PassWord
         {
             get { return passWord; }
             set { passWord = value; }
@@ -41,11 +41,11 @@ namespace DTO
 
             return connString;
         }
-        public string SqlConnectionWindowsAuthentication()
+        public static string SqlConnectionWindowsAuthentication()
         {
             string connString = @"Data Source=" + DataSource + ";Initial Catalog="
                         + Database + ";Integrated Security=True";
-            
+
             return connString;
         }
         public cls_Connect(string datasource, string database, string username, string password)
@@ -59,10 +59,6 @@ namespace DTO
         {
             DataSource = datasource;
             Database = database;
-        }
-        public cls_Connect()
-        {
-
         }
     }
 }

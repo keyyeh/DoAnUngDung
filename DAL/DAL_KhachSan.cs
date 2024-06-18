@@ -24,7 +24,6 @@ namespace DAL
                 KHACHSAN khachSan = new KHACHSAN
                 {
                     MAKS = ks.MaKS,
-                    ADMINID = ks.ADmin,
                     TENKS = ks.TenKS,
                     DIADIEM = ks.DiaDiem,
                     DANHGIA = ks.DanhGia,
@@ -38,7 +37,6 @@ namespace DAL
         public int Sua(DTO_KhachSan ks)
         {
             var sua = ConectionData.dt.KHACHSANs.Single(khachSan => khachSan.MAKS == ks.MaKS);
-            sua.ADMINID = ks.ADmin;
             sua.TENKS = ks.TenKS;
             sua.DIADIEM = ks.DiaDiem;
             sua.DANHGIA = ks.DanhGia;
@@ -69,7 +67,6 @@ namespace DAL
                                 .Select(ks => new DTO_KhachSan
                                 {
                                     MaKS = ks.MAKS,
-                                    ADmin = ks.ADMINID,
                                     TenKS = ks.TENKS,
                                     DiaDiem = ks.DIADIEM,
                                     DanhGia = ks.DANHGIA,

@@ -75,9 +75,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.btnCapNhat = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.dgvDSKH = new System.Windows.Forms.DataGridView();
-            this.label11 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.tabPage2.SuspendLayout();
@@ -146,6 +144,7 @@
             this.cbLoaiHinh.Name = "cbLoaiHinh";
             this.cbLoaiHinh.Size = new System.Drawing.Size(248, 24);
             this.cbLoaiHinh.TabIndex = 4;
+            this.cbLoaiHinh.SelectedIndexChanged += new System.EventHandler(this.cbLoaiHinh_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -192,7 +191,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Sản phẩm & Dịch vụ";
             this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // dgvMucSP
             // 
@@ -320,7 +318,6 @@
             this.thêmToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(116, 28);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // thêmToolStripMenuItem
             // 
@@ -569,9 +566,7 @@
             // 
             this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Controls.Add(this.btnCapNhat);
-            this.groupBox3.Controls.Add(this.comboBox2);
             this.groupBox3.Controls.Add(this.dgvDSKH);
-            this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(0, 361);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
@@ -604,20 +599,6 @@
             this.btnCapNhat.UseVisualStyleBackColor = true;
             this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
             // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Tự động",
-            "Đêm",
-            "Ngày đêm",
-            "Tháng"});
-            this.comboBox2.Location = new System.Drawing.Point(464, 12);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(193, 26);
-            this.comboBox2.TabIndex = 12;
-            // 
             // dgvDSKH
             // 
             this.dgvDSKH.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -631,16 +612,6 @@
             this.dgvDSKH.Size = new System.Drawing.Size(984, 96);
             this.dgvDSKH.TabIndex = 17;
             this.dgvDSKH.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDSKH_CellClick);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(392, 22);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(61, 19);
-            this.label11.TabIndex = 15;
-            this.label11.Text = "Phòng:";
             // 
             // button5
             // 
@@ -690,7 +661,6 @@
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhong)).EndInit();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDSKH)).EndInit();
             this.ResumeLayout(false);
 
@@ -722,9 +692,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnCapNhat;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.DataGridView dgvDSKH;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.DateTimePicker dtpTimeIn;
         private System.Windows.Forms.DateTimePicker dtpTimeOut;
         private System.Windows.Forms.DateTimePicker dtpDateOut;
